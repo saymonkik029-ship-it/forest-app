@@ -6,6 +6,7 @@
 <title>Forest Restaurant PRO</title>
 
 <style>
+
 *{
 margin:0;
 padding:0;
@@ -14,158 +15,174 @@ font-family:Arial,sans-serif;
 }
 
 body{
-background:linear-gradient(90deg,#001d0d,#013d1c,#001d0d);
+background:linear-gradient(180deg,#021b12,#05361d);
 color:white;
 min-height:100vh;
 padding:20px;
 }
 
-.top{
+.header{
 display:flex;
 justify-content:space-between;
 align-items:center;
-margin-bottom:25px;
+margin-bottom:20px;
 }
 
 .logo{
 display:flex;
 align-items:center;
-gap:12px;
+gap:15px;
 }
 
 .logo h1{
-font-size:55px;
+font-size:42px;
 }
 
 .logo p{
-color:#8df7cf;
-font-size:20px;
+color:#8fffd2;
 }
 
 .top-buttons{
 display:flex;
-gap:15px;
+gap:10px;
 align-items:center;
 }
 
 .btn{
 border:none;
-padding:20px 30px;
-border-radius:25px;
-font-size:26px;
+border-radius:18px;
+padding:15px 20px;
 font-weight:bold;
-color:white;
+font-size:18px;
 cursor:pointer;
 }
 
-.add-type{
-background:linear-gradient(45deg,#ff7a00,#ff3f8a);
+.orange{
+background:linear-gradient(45deg,#ff7b00,#ff3d77);
+color:white;
 }
 
-.orders-btn{
-background:linear-gradient(45deg,#00d2ff,#3aeeff);
+.blue{
+background:linear-gradient(45deg,#00d2ff,#3a7dff);
+color:white;
 }
 
 .settings{
-width:65px;
-height:65px;
+width:55px;
+height:55px;
 border-radius:50%;
-border:none;
-font-size:30px;
-background:#04112f;
+background:#081321;
 color:white;
+font-size:26px;
+display:flex;
+justify-content:center;
+align-items:center;
 cursor:pointer;
 }
 
 .categories{
 display:grid;
 grid-template-columns:1fr 1fr;
-gap:20px;
-margin-bottom:30px;
+gap:15px;
+margin-bottom:25px;
 }
 
 .category{
-background:rgba(0,0,0,0.55);
-border-radius:30px;
-padding:35px;
-font-size:34px;
+background:rgba(0,0,0,0.35);
+border-radius:25px;
+padding:30px 20px;
+font-size:26px;
 font-weight:bold;
 cursor:pointer;
+transition:0.2s;
 position:relative;
 }
 
-.category-tools{
+.category:hover{
+transform:scale(1.03);
+}
+
+.category-actions{
 position:absolute;
-top:15px;
-right:15px;
+top:10px;
+right:10px;
 display:flex;
-gap:10px;
+gap:5px;
 }
 
 .small-btn{
 border:none;
-border-radius:12px;
-padding:8px 12px;
+padding:5px 8px;
+border-radius:10px;
 cursor:pointer;
-font-size:16px;
-font-weight:bold;
+font-size:12px;
 }
 
 .edit{
-background:#00c2ff;
+background:#00d5ff;
 color:white;
 }
 
 .delete{
-background:#ff3b5f;
+background:#ff4d7a;
 color:white;
 }
 
 .order-box{
-background:rgba(0,0,0,0.55);
-padding:30px;
-border-radius:35px;
+background:rgba(0,0,0,0.45);
+border-radius:30px;
+padding:25px;
 }
 
 .order-box h2{
-font-size:58px;
+font-size:48px;
 margin-bottom:20px;
 }
 
 .table-input{
 width:100%;
 padding:15px;
-margin-bottom:20px;
 border:none;
 border-radius:15px;
-font-size:24px;
+margin-bottom:15px;
+font-size:18px;
 }
 
 .order-item{
 display:flex;
 justify-content:space-between;
 align-items:center;
-margin:15px 0;
-font-size:24px;
+background:rgba(255,255,255,0.05);
+padding:12px;
+border-radius:12px;
+margin-bottom:10px;
+}
+
+.remove-btn{
+background:#ff4d7a;
+border:none;
+color:white;
+padding:6px 10px;
+border-radius:10px;
+cursor:pointer;
 }
 
 .total{
 display:flex;
 justify-content:space-between;
-font-size:42px;
+font-size:36px;
 font-weight:bold;
-margin-top:25px;
+margin:20px 0;
 }
 
 .confirm{
 width:100%;
-margin-top:25px;
-padding:25px;
+padding:22px;
 border:none;
-border-radius:30px;
-font-size:38px;
+border-radius:22px;
+font-size:32px;
 font-weight:bold;
-background:linear-gradient(45deg,#19d49d,#32d1d1);
+background:linear-gradient(45deg,#00ffc8,#49e2ff);
 color:white;
 cursor:pointer;
 }
@@ -173,93 +190,131 @@ cursor:pointer;
 .modal{
 position:fixed;
 inset:0;
-background:rgba(0,0,0,0.8);
+background:rgba(0,0,0,0.7);
 display:none;
 justify-content:center;
 align-items:center;
 padding:20px;
-z-index:999;
+z-index:1000;
 }
 
 .modal-content{
-background:#062914;
-padding:25px;
-border-radius:25px;
+background:#062416;
 width:100%;
-max-width:700px;
+max-width:500px;
+border-radius:25px;
+padding:20px;
 max-height:90vh;
 overflow:auto;
 }
 
-.modal-content h2{
-font-size:42px;
+.modal h2{
 margin-bottom:20px;
+font-size:34px;
 }
 
-.modal-content input{
+input{
 width:100%;
-padding:18px;
-margin-bottom:15px;
+padding:14px;
 border:none;
-border-radius:15px;
-font-size:22px;
+border-radius:14px;
+margin-bottom:12px;
+font-size:18px;
 }
 
-.modal-content button{
+.save-btn{
 width:100%;
-padding:18px;
-margin-top:10px;
+padding:14px;
 border:none;
+border-radius:14px;
+background:#43ff68;
+font-size:20px;
+font-weight:bold;
+margin-bottom:10px;
+cursor:pointer;
+}
+
+.close-btn{
+width:100%;
+padding:14px;
+border:none;
+border-radius:14px;
+background:#ff4d7a;
+font-size:20px;
+font-weight:bold;
+color:white;
+cursor:pointer;
+}
+
+.food-item{
+background:rgba(255,255,255,0.05);
+padding:14px;
 border-radius:18px;
-font-size:24px;
+margin-bottom:10px;
+}
+
+.food-top{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:10px;
+}
+
+.food-title{
+font-size:22px;
+font-weight:bold;
+}
+
+.food-price{
+color:#aaffdc;
+}
+
+.food-buttons{
+display:flex;
+gap:8px;
+}
+
+.food-buttons button{
+flex:1;
+padding:10px;
+border:none;
+border-radius:12px;
 font-weight:bold;
 cursor:pointer;
 }
 
-.save{
-background:#5aff7a;
+.add-food{
+background:#4dff88;
 }
 
-.close{
-background:#ff456d;
+.edit-food{
+background:#4ddcff;
+}
+
+.delete-food{
+background:#ff4d7a;
 color:white;
 }
 
-.food-card{
-background:#021a0e;
-padding:18px;
+.history-card{
+background:rgba(255,255,255,0.05);
+padding:15px;
 border-radius:18px;
 margin-bottom:15px;
 }
 
-.food-card h3{
-font-size:28px;
+.history-card h3{
 margin-bottom:10px;
-}
-
-.food-card p{
-font-size:22px;
-margin-bottom:10px;
-}
-
-.food-card button{
-margin-top:8px;
-}
-
-.history-card{
-background:#021a0e;
-padding:20px;
-border-radius:20px;
-margin-bottom:15px;
 }
 
 </style>
 </head>
 <body>
 
-<div class="top">
+<div class="header">
+
 <div class="logo">
-<div style="font-size:60px;">🌲</div>
+<div style="font-size:60px">🌲</div>
 <div>
 <h1>Forest</h1>
 <p>Restaurant PRO</p>
@@ -267,20 +322,22 @@ margin-bottom:15px;
 </div>
 
 <div class="top-buttons">
-<button class="btn add-type" onclick="openTypeModal()">+ Вид</button>
-<button class="btn orders-btn" onclick="openOrders()">Заказы</button>
-<button class="settings" onclick="openSettings()">⚙</button>
+<button class="btn orange" onclick="openCategoryCreator()">+ Вид</button>
+<button class="btn blue" onclick="openOrders()">Заказы</button>
+<div class="settings" onclick="openSettings()">⚙</div>
 </div>
+
 </div>
 
 <div class="categories" id="categories"></div>
 
 <div class="order-box">
+
 <h2>Текущий заказ</h2>
 
-<input type="number" class="table-input" id="tableNumber" placeholder="Номер столика">
+<input class="table-input" id="tableNumber" placeholder="Номер столика">
 
-<div id="currentOrder"></div>
+<div id="orderList"></div>
 
 <div class="total">
 <span>Итого</span>
@@ -288,373 +345,489 @@ margin-bottom:15px;
 </div>
 
 <button class="confirm" onclick="confirmOrder()">Подтвердить заказ</button>
+
 </div>
 
-<!-- Категория -->
+<!-- CATEGORY MODAL -->
+
 <div class="modal" id="foodsModal">
+
 <div class="modal-content">
+
 <h2 id="foodsTitle"></h2>
 
-<button class="save" onclick="openFoodModal()">Добавить блюдо</button>
+<button class="save-btn" onclick="showAddFood()">Добавить блюдо</button>
 
 <div id="foodsList"></div>
 
-<button class="close" onclick="closeModal('foodsModal')">Закрыть</button>
+<button class="close-btn" onclick="closeModal('foodsModal')">Закрыть</button>
+
 </div>
 </div>
 
-<!-- Добавить блюдо -->
-<div class="modal" id="foodModal">
+<!-- ADD FOOD -->
+
+<div class="modal" id="addFoodModal">
+
 <div class="modal-content">
+
 <h2>Добавить блюдо</h2>
 
 <input id="foodName" placeholder="Название блюда">
 <input id="foodPrice" type="number" placeholder="Цена">
 
-<button class="save" onclick="saveFood()">Сохранить</button>
-<button class="close" onclick="closeModal('foodModal')">Закрыть</button>
+<button class="save-btn" onclick="saveFood()">Сохранить</button>
+
+<button class="close-btn" onclick="closeModal('addFoodModal')">Закрыть</button>
+
 </div>
 </div>
 
-<!-- Добавить вид -->
-<div class="modal" id="typeModal">
+<!-- CATEGORY CREATE -->
+
+<div class="modal" id="categoryModal">
+
 <div class="modal-content">
-<h2>Новый вид блюд</h2>
 
-<input id="typeName" placeholder="Название вида">
+<h2>Новый вид блюда</h2>
 
-<button class="save" onclick="saveType()">Создать</button>
-<button class="close" onclick="closeModal('typeModal')">Закрыть</button>
+<input id="categoryName" placeholder="Название вида">
+
+<button class="save-btn" onclick="saveCategory()">Создать</button>
+
+<button class="close-btn" onclick="closeModal('categoryModal')">Закрыть</button>
+
 </div>
 </div>
 
-<!-- Заказы -->
+<!-- ORDERS -->
+
 <div class="modal" id="ordersModal">
+
 <div class="modal-content">
-<h2>Все заказы</h2>
+
+<h2>Активные заказы</h2>
 
 <div id="ordersList"></div>
 
-<button class="close" onclick="closeModal('ordersModal')">Закрыть</button>
+<button class="close-btn" onclick="closeModal('ordersModal')">Закрыть</button>
+
 </div>
 </div>
 
-<!-- Настройки -->
+<!-- SETTINGS -->
+
 <div class="modal" id="settingsModal">
+
 <div class="modal-content">
+
 <h2>История заказов</h2>
 
 <div id="historyList"></div>
 
-<button class="close" onclick="closeModal('settingsModal')">Закрыть</button>
+<button class="close-btn" onclick="closeModal('settingsModal')">Закрыть</button>
+
 </div>
 </div>
 
 <script>
 
-let currentCategory = "";
-let order = [];
+let categories = JSON.parse(localStorage.getItem("categories")) || [
+{name:"Первое", foods:[]},
+{name:"Второе", foods:[]},
+{name:"Десерты", foods:[]},
+{name:"Напитки", foods:[]},
+{name:"Алкоголь", foods:[]}
+];
 
-let categories = JSON.parse(localStorage.getItem("categories")) || {
-"Первое":[],
-"Второе":[],
-"Десерты":[],
-"Напитки":[],
-"Алкоголь":[]
-};
+let currentOrder = JSON.parse(localStorage.getItem("currentOrder")) || [];
 
 let orders = JSON.parse(localStorage.getItem("orders")) || [];
+
 let history = JSON.parse(localStorage.getItem("history")) || [];
 
-function saveAll(){
+let currentCategory = null;
+let editFoodIndex = null;
+
+function saveData(){
 localStorage.setItem("categories",JSON.stringify(categories));
+localStorage.setItem("currentOrder",JSON.stringify(currentOrder));
 localStorage.setItem("orders",JSON.stringify(orders));
 localStorage.setItem("history",JSON.stringify(history));
 }
 
 function renderCategories(){
-let box=document.getElementById("categories");
-box.innerHTML="";
 
-for(let cat in categories){
+const box = document.getElementById("categories");
+box.innerHTML = "";
 
-box.innerHTML+=`
-<div class="category" onclick="openFoods('${cat}')">
-${cat}
+categories.forEach((cat,index)=>{
 
-<div class="category-tools">
-<button class="small-btn edit" onclick="event.stopPropagation();editCategory('${cat}')">✏</button>
-<button class="small-btn delete" onclick="event.stopPropagation();deleteCategory('${cat}')">🗑</button>
+box.innerHTML += `
+<div class="category" onclick="openFoods(${index})">
+
+<div class="category-actions">
+
+<button class="small-btn edit" onclick="event.stopPropagation(); editCategory(${index})">✏</button>
+
+<button class="small-btn delete" onclick="event.stopPropagation(); deleteCategory(${index})">🗑</button>
+
 </div>
 
-</div>
-`;
-}
-}
+${cat.name}
 
-function openFoods(cat){
-currentCategory=cat;
-document.getElementById("foodsTitle").innerText=cat;
-
-let list=document.getElementById("foodsList");
-list.innerHTML="";
-
-categories[cat].forEach((food,index)=>{
-
-list.innerHTML+=`
-<div class="food-card">
-<h3>${food.name}</h3>
-<p>${food.price} ₽</p>
-
-<button class="save" onclick="addToOrder('${food.name}',${food.price})">Добавить</button>
-
-<button class="edit" onclick="editFood(${index})">Редактировать</button>
-
-<button class="delete" onclick="deleteFood(${index})">Удалить</button>
 </div>
 `;
 
 });
 
-document.getElementById("foodsModal").style.display="flex";
 }
 
-function openFoodModal(){
-document.getElementById("foodModal").style.display="flex";
+function openFoods(index){
+
+currentCategory = index;
+
+document.getElementById("foodsTitle").innerText = categories[index].name;
+
+const list = document.getElementById("foodsList");
+
+list.innerHTML = "";
+
+categories[index].foods.forEach((food,i)=>{
+
+list.innerHTML += `
+<div class="food-item">
+
+<div class="food-top">
+<div>
+<div class="food-title">${food.name}</div>
+<div class="food-price">${food.price} ₽</div>
+</div>
+</div>
+
+<div class="food-buttons">
+
+<button class="add-food" onclick="addToOrder('${food.name}',${food.price})">+</button>
+
+<button class="edit-food" onclick="editFood(${i})">✏</button>
+
+<button class="delete-food" onclick="deleteFood(${i})">🗑</button>
+
+</div>
+
+</div>
+`;
+
+});
+
+document.getElementById("foodsModal").style.display = "flex";
+
+}
+
+function showAddFood(){
+
+editFoodIndex = null;
+
+document.getElementById("foodName").value = "";
+document.getElementById("foodPrice").value = "";
+
+document.getElementById("addFoodModal").style.display = "flex";
+
 }
 
 function saveFood(){
 
-let name=document.getElementById("foodName").value;
-let price=document.getElementById("foodPrice").value;
+const name = document.getElementById("foodName").value;
+const price = document.getElementById("foodPrice").value;
 
 if(!name || !price) return;
 
-categories[currentCategory].push({
+if(editFoodIndex === null){
+
+categories[currentCategory].foods.push({
 name,
 price
 });
 
-saveAll();
+}else{
 
-closeModal("foodModal");
-openFoods(currentCategory);
+categories[currentCategory].foods[editFoodIndex] = {
+name,
+price
+};
 
-document.getElementById("foodName").value="";
-document.getElementById("foodPrice").value="";
 }
 
-function deleteFood(index){
-categories[currentCategory].splice(index,1);
-saveAll();
+saveData();
+
+closeModal("addFoodModal");
+
 openFoods(currentCategory);
+
+renderCategories();
+
 }
 
 function editFood(index){
 
-let newName=prompt("Новое название",categories[currentCategory][index].name);
-let newPrice=prompt("Новая цена",categories[currentCategory][index].price);
+editFoodIndex = index;
 
-if(newName && newPrice){
+const food = categories[currentCategory].foods[index];
 
-categories[currentCategory][index]={
-name:newName,
-price:newPrice
-};
+document.getElementById("foodName").value = food.name;
+document.getElementById("foodPrice").value = food.price;
 
-saveAll();
-openFoods(currentCategory);
+document.getElementById("addFoodModal").style.display = "flex";
 
 }
+
+function deleteFood(index){
+
+categories[currentCategory].foods.splice(index,1);
+
+saveData();
+
+openFoods(currentCategory);
+
 }
 
 function addToOrder(name,price){
 
-order.push({
-name,
-price
-});
+currentOrder.push({name,price});
+
+saveData();
 
 renderOrder();
+
 }
 
 function renderOrder(){
 
-let box=document.getElementById("currentOrder");
-box.innerHTML="";
+const list = document.getElementById("orderList");
 
-let total=0;
+list.innerHTML = "";
 
-order.forEach((item,index)=>{
+let total = 0;
 
-total+=Number(item.price);
+currentOrder.forEach((item,index)=>{
 
-box.innerHTML+=`
+total += Number(item.price);
+
+list.innerHTML += `
 <div class="order-item">
-<span>${item.name} - ${item.price} ₽</span>
 
-<button class="delete" onclick="removeOrderItem(${index})">X</button>
+<div>
+${item.name}<br>
+${item.price} ₽
+</div>
+
+<button class="remove-btn" onclick="removeOrderItem(${index})">X</button>
+
 </div>
 `;
 
 });
 
-document.getElementById("total").innerText=total+" ₽";
+document.getElementById("total").innerText = total + " ₽";
+
 }
 
 function removeOrderItem(index){
-order.splice(index,1);
+
+currentOrder.splice(index,1);
+
+saveData();
+
 renderOrder();
+
 }
 
 function confirmOrder(){
 
-if(order.length===0) return;
+if(currentOrder.length === 0) return;
 
-let table=document.getElementById("tableNumber").value || "Не указан";
-
-let data={
-table,
-items:[...order],
-total:document.getElementById("total").innerText,
-time:new Date().toLocaleString()
+const order = {
+table: document.getElementById("tableNumber").value || "Без номера",
+items:[...currentOrder],
+total: currentOrder.reduce((a,b)=>a+Number(b.price),0),
+date:new Date().toLocaleString()
 };
 
-orders.push(data);
-history.push(data);
+orders.push(order);
+history.push(order);
 
-saveAll();
+currentOrder = [];
 
-order=[];
+document.getElementById("tableNumber").value = "";
+
+saveData();
+
 renderOrder();
 
-document.getElementById("tableNumber").value="";
+alert("Заказ принят");
 
-alert("Заказ подтверждён");
 }
 
 function openOrders(){
 
-let list=document.getElementById("ordersList");
-list.innerHTML="";
+const list = document.getElementById("ordersList");
 
-orders.forEach((o,index)=>{
+list.innerHTML = "";
 
-list.innerHTML+=`
+orders.forEach((order,index)=>{
+
+list.innerHTML += `
 <div class="history-card">
 
-<h3>Столик: ${o.table}</h3>
+<h3>Столик: ${order.table}</h3>
 
-<p>${o.time}</p>
+<div>${order.date}</div>
 
-<p>${o.items.map(i=>i.name).join(", ")}</p>
+<br>
 
-<h2>${o.total}</h2>
+${order.items.map(i=>`${i.name} - ${i.price} ₽`).join("<br>")}
 
-<button class="delete" onclick="deleteOrder(${index})">Удалить</button>
+<br><br>
+
+<b>Итого: ${order.total} ₽</b>
+
+<br><br>
+
+<button class="save-btn" onclick="deleteOrder(${index})">Удалить</button>
 
 </div>
 `;
 
 });
 
-document.getElementById("ordersModal").style.display="flex";
+document.getElementById("ordersModal").style.display = "flex";
+
 }
 
 function deleteOrder(index){
+
 orders.splice(index,1);
-saveAll();
+
+saveData();
+
 openOrders();
+
 }
 
 function openSettings(){
 
-let list=document.getElementById("historyList");
-list.innerHTML="";
+const list = document.getElementById("historyList");
 
-history.forEach((o,index)=>{
+list.innerHTML = "";
 
-list.innerHTML+=`
+history.forEach((order,index)=>{
+
+list.innerHTML += `
 <div class="history-card">
 
-<h3>Столик: ${o.table}</h3>
+<h3>Столик ${order.table}</h3>
 
-<p>${o.time}</p>
+<div>${order.date}</div>
 
-<p>${o.items.map(i=>i.name).join(", ")}</p>
+<br>
 
-<h2>${o.total}</h2>
+${order.items.map(i=>`${i.name} - ${i.price} ₽`).join("<br>")}
 
-<button class="delete" onclick="deleteHistory(${index})">Удалить навсегда</button>
+<br><br>
+
+<b>Итого: ${order.total} ₽</b>
+
+<br><br>
+
+<button class="close-btn" onclick="deleteHistory(${index})">Удалить навсегда</button>
 
 </div>
 `;
 
 });
 
-document.getElementById("settingsModal").style.display="flex";
+document.getElementById("settingsModal").style.display = "flex";
+
 }
 
 function deleteHistory(index){
+
 history.splice(index,1);
-saveAll();
+
+saveData();
+
 openSettings();
+
 }
 
-function openTypeModal(){
-document.getElementById("typeModal").style.display="flex";
+function openCategoryCreator(){
+
+document.getElementById("categoryModal").style.display = "flex";
+
 }
 
-function saveType(){
+function saveCategory(){
 
-let name=document.getElementById("typeName").value;
+const name = document.getElementById("categoryName").value;
 
 if(!name) return;
 
-categories[name]=[];
+categories.push({
+name,
+foods:[]
+});
 
-saveAll();
+saveData();
+
 renderCategories();
 
-document.getElementById("typeName").value="";
+closeModal("categoryModal");
 
-closeModal("typeModal");
+document.getElementById("categoryName").value = "";
+
 }
 
-function deleteCategory(cat){
+function deleteCategory(index){
 
 if(confirm("Удалить категорию?")){
 
-delete categories[cat];
+categories.splice(index,1);
 
-saveAll();
+saveData();
+
 renderCategories();
 
 }
+
 }
 
-function editCategory(cat){
+function editCategory(index){
 
-let newName=prompt("Новое название",cat);
+const newName = prompt("Новое название",categories[index].name);
 
-if(!newName) return;
+if(newName){
 
-categories[newName]=categories[cat];
+categories[index].name = newName;
 
-delete categories[cat];
+saveData();
 
-saveAll();
 renderCategories();
+
+}
+
 }
 
 function closeModal(id){
-document.getElementById(id).style.display="none";
+
+document.getElementById(id).style.display = "none";
+
 }
 
 renderCategories();
+
 renderOrder();
 
 </script>
 
 </body>
-  </html>
+</html>
