@@ -1,447 +1,101 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Forest Restaurant PRO</title>
+<!-- НОВЫЕ ФУНКЦИИ -->
 
-<style>
+<!-- 1. КНОПКА НАСТРОЕК -->
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
-}
-
-body{
-background:linear-gradient(135deg,#001a09,#003b12,#001a09);
-color:white;
-min-height:100vh;
-padding:18px;
-overflow-x:hidden;
-}
-
-/* HEADER */
-
-.header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:25px;
-}
-
-.logo{
-display:flex;
-align-items:center;
-gap:10px;
-}
-
-.logo h1{
-font-size:42px;
-}
-
-.logo p{
-color:#8fffd0;
-}
-
-.buttons{
-display:flex;
-gap:12px;
-}
-
-.top-btn{
-border:none;
-padding:16px 22px;
-border-radius:20px;
-font-size:18px;
-font-weight:bold;
-color:white;
-cursor:pointer;
-transition:0.3s;
-}
-
-.view-btn{
-background:linear-gradient(45deg,#ff7a00,#ff2d55);
-}
-
-.orders-btn{
-background:linear-gradient(45deg,#00bcd4,#2dd4bf);
-}
-
-.top-btn:hover{
-transform:scale(1.05);
-}
-
-/* CATEGORIES */
-
-.categories{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:18px;
-}
-
-.category{
-background:rgba(0,0,0,0.55);
-border-radius:28px;
-padding:35px 20px;
-font-size:28px;
-font-weight:bold;
-cursor:pointer;
-transition:0.3s;
-}
-
-.category:hover{
-background:#123a24;
-transform:translateY(-5px);
-}
-
-/* ORDER */
-
-.order-box{
-margin-top:30px;
-background:rgba(0,0,0,0.6);
-padding:25px;
-border-radius:35px;
-}
-
-.order-box h2{
-font-size:40px;
-margin-bottom:20px;
-}
-
-.order-item{
-display:flex;
-justify-content:space-between;
-align-items:center;
-background:#062615;
-padding:12px;
-border-radius:15px;
-margin-bottom:10px;
-}
-
-.remove-btn{
-background:red;
-border:none;
-padding:8px 12px;
-border-radius:10px;
-color:white;
-cursor:pointer;
-font-weight:bold;
-}
-
-.total{
-display:flex;
-justify-content:space-between;
-font-size:26px;
-font-weight:bold;
-margin:20px 0;
-}
-
-.accept-btn{
-width:100%;
-padding:22px;
-border:none;
-border-radius:25px;
-background:#25d7c0;
-color:white;
-font-size:26px;
-font-weight:bold;
-cursor:pointer;
-}
-
-/* MODAL */
-
-.modal{
+<button id="settingsBtn"
+onclick="openSettings()"
+style="
 position:fixed;
-inset:0;
-background:rgba(0,0,0,0.8);
-display:none;
-justify-content:center;
-align-items:center;
+right:20px;
+bottom:20px;
+width:70px;
+height:70px;
+border:none;
+border-radius:50%;
+background:#111827;
+color:white;
+font-size:30px;
+cursor:pointer;
 z-index:999;
-padding:20px;
-}
+box-shadow:0 0 20px rgba(0,0,0,0.5);
+">
+⚙️
+</button>
 
-.modal-content{
-background:#041b10;
-width:100%;
-max-width:550px;
-padding:25px;
-border-radius:25px;
-max-height:90vh;
-overflow:auto;
-}
+<!-- 2. ОКНО НАСТРОЕК -->
 
-.modal-content h2{
-margin-bottom:20px;
-font-size:32px;
-}
+<div class="modal" id="settingsModal">
 
-.product{
-background:#0a2f1c;
-padding:15px;
-border-radius:18px;
-margin-bottom:12px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-}
+<div class="modal-content">
 
-.product-buttons{
-display:flex;
-gap:8px;
-}
+<h2>
+Настройки
+</h2>
 
-.add-btn{
-background:#22c55e;
-border:none;
-padding:10px 14px;
-border-radius:10px;
-color:white;
-font-weight:bold;
-cursor:pointer;
-}
+<h3 style="margin-bottom:15px;">
+Все сохранённые заказы
+</h3>
 
-.edit-btn{
-background:#f59e0b;
-border:none;
-padding:10px 14px;
-border-radius:10px;
-color:white;
-font-weight:bold;
-cursor:pointer;
-}
+<div id="savedOrders"></div>
 
-.delete-btn{
-background:#ef4444;
-border:none;
-padding:10px 14px;
-border-radius:10px;
-color:white;
-font-weight:bold;
-cursor:pointer;
-}
+<button class="close-btn"
+onclick="closeSettings()">
+Закрыть
+</button>
 
-.close-btn{
-margin-top:20px;
+</div>
+
+</div>
+
+<!-- 3. НОМЕР СТОЛИКА -->
+
+<input type="number"
+id="tableNumber"
+placeholder="Номер столика"
+style="
 width:100%;
 padding:15px;
 border:none;
 border-radius:15px;
-background:#ff2d55;
-color:white;
-font-size:18px;
-cursor:pointer;
-}
-
-.history-order{
-background:#0a2f1c;
-padding:15px;
-border-radius:18px;
 margin-bottom:15px;
-}
-
-input{
-width:100%;
-padding:14px;
-margin-bottom:12px;
-border:none;
-border-radius:12px;
 background:#0f2f1f;
 color:white;
 font-size:18px;
-}
-
-.save-btn{
-width:100%;
-padding:15px;
-border:none;
-border-radius:15px;
-background:#22c55e;
-color:white;
-font-size:20px;
-font-weight:bold;
-cursor:pointer;
-}
-
-</style>
-</head>
-
-<body>
-
-<div class="header">
-
-<div class="logo">
-<div style="font-size:45px;">🌲</div>
-
-<div>
-<h1>Forest</h1>
-<p>Restaurant PRO</p>
-</div>
-
-</div>
-
-<div class="buttons">
-
-<button class="top-btn view-btn"
-onclick="addCategory()">
-+ Вид
-</button>
-
-<button class="top-btn orders-btn"
-onclick="openOrders()">
-Заказы
-</button>
-
-</div>
-
-</div>
-
-<div id="categories" class="categories"></div>
-
-<div class="order-box">
-
-<h2>Текущий заказ</h2>
-
-<div id="orderItems">
-Нет блюд
-</div>
-
-<div class="total">
-<span>Итого</span>
-<span id="total">0 ₽</span>
-</div>
-
-<button class="accept-btn"
-onclick="confirmOrder()">
-Подтвердить заказ
-</button>
-
-</div>
-
-<!-- PRODUCTS -->
-
-<div class="modal" id="productsModal">
-
-<div class="modal-content">
-
-<h2 id="modalTitle">Категория</h2>
-
-<button class="save-btn"
-onclick="openAddProduct()">
-+ Добавить блюдо
-</button>
-
-<br><br>
-
-<div id="productsList"></div>
-
-<button class="close-btn"
-onclick="closeProducts()">
-Закрыть
-</button>
-
-</div>
-
-</div>
-
-<!-- ADD PRODUCT -->
-
-<div class="modal" id="addProductModal">
-
-<div class="modal-content">
-
-<h2>Добавить блюдо</h2>
-
-<input type="text"
-id="productName"
-placeholder="Название блюда">
-
-<input type="number"
-id="productPrice"
-placeholder="Цена">
-
-<button class="save-btn"
-onclick="saveProduct()">
-Сохранить
-</button>
-
-<button class="close-btn"
-onclick="closeAddProduct()">
-Закрыть
-</button>
-
-</div>
-
-</div>
-
-<!-- ORDERS -->
-
-<div class="modal" id="ordersModal">
-
-<div class="modal-content">
-
-<h2>Все заказы</h2>
-
-<div id="ordersHistory"></div>
-
-<button class="close-btn"
-onclick="closeOrders()">
-Закрыть
-</button>
-
-</div>
-
-</div>
+">
 
 <script>
 
-let currentCategory = "";
-let currentOrder = [];
-let total = 0;
-
-let menu = JSON.parse(localStorage.getItem("menu")) || {
-"Первое":[],
-"Второе":[],
-"Десерты":[],
-"Напитки":[],
-"Алкоголь":[]
-};
-
-let allOrders = JSON.parse(localStorage.getItem("orders")) || [];
+/* =========================
+СОХРАНЕНИЕ
+========================= */
 
 function saveData(){
-localStorage.setItem("menu",JSON.stringify(menu));
-localStorage.setItem("orders",JSON.stringify(allOrders));
-}
 
-function renderCategories(){
+localStorage.setItem(
+"menu",
+JSON.stringify(menu)
+);
 
-let container=document.getElementById("categories");
-
-container.innerHTML="";
-
-Object.keys(menu).forEach(category=>{
-
-container.innerHTML += `
-<div class="category"
-onclick="openCategory('${category}')">
-${category}
-</div>
-`;
-
-});
+localStorage.setItem(
+"orders",
+JSON.stringify(allOrders)
+);
 
 }
 
-function addCategory(){
+/* =========================
+УДАЛЕНИЕ КАТЕГОРИЙ
+========================= */
 
-let name = prompt("Название нового вида");
+function deleteCategory(category){
 
-if(!name) return;
+let confirmDelete = confirm(
+"Удалить категорию " + category + " ?"
+);
 
-menu[name]=[];
+if(!confirmDelete) return;
+
+delete menu[category];
 
 saveData();
 
@@ -449,227 +103,136 @@ renderCategories();
 
 }
 
-function openCategory(category){
+/* =========================
+РЕНДЕР КАТЕГОРИЙ
+========================= */
 
-currentCategory=category;
+function renderCategories(){
 
-document.getElementById("productsModal").style.display="flex";
-
-document.getElementById("modalTitle").innerText=category;
-
-renderProducts();
-
-}
-
-function renderProducts(){
-
-let container=document.getElementById("productsList");
+let container =
+document.getElementById("categories");
 
 container.innerHTML="";
 
-menu[currentCategory].forEach((product,index)=>{
+Object.keys(menu).forEach(category=>{
 
 container.innerHTML += `
-<div class="product">
 
-<div>
-${product.name}<br>
-${product.price} ₽
-</div>
+<div class="category">
 
-<div class="product-buttons">
+<div onclick="
+openCategory('${category}')
+">
 
-<button class="add-btn"
-onclick="addProductToOrder(${index})">
-+
-</button>
-
-<button class="edit-btn"
-onclick="editProduct(${index})">
-✏
-</button>
-
-<button class="delete-btn"
-onclick="deleteProduct(${index})">
-X
-</button>
+${category}
 
 </div>
 
+<button
+onclick="
+deleteCategory('${category}')
+"
+style="
+margin-top:15px;
+background:red;
+border:none;
+padding:10px;
+border-radius:12px;
+color:white;
+width:100%;
+font-weight:bold;
+cursor:pointer;
+">
+Удалить
+</button>
+
 </div>
+
 `;
 
 });
 
 }
 
-function openAddProduct(){
-
-document.getElementById("addProductModal").style.display="flex";
-
-}
-
-function closeAddProduct(){
-
-document.getElementById("addProductModal").style.display="none";
-
-}
-
-function saveProduct(){
-
-let name=document.getElementById("productName").value;
-let price=document.getElementById("productPrice").value;
-
-if(!name || !price){
-alert("Заполните поля");
-return;
-}
-
-menu[currentCategory].push({
-name:name,
-price:Number(price)
-});
-
-saveData();
-
-renderProducts();
-
-closeAddProduct();
-
-document.getElementById("productName").value="";
-document.getElementById("productPrice").value="";
-
-}
-
-function editProduct(index){
-
-let newName=prompt("Новое название",menu[currentCategory][index].name);
-
-let newPrice=prompt("Новая цена",menu[currentCategory][index].price);
-
-if(!newName || !newPrice) return;
-
-menu[currentCategory][index].name=newName;
-menu[currentCategory][index].price=Number(newPrice);
-
-saveData();
-
-renderProducts();
-
-}
-
-function deleteProduct(index){
-
-menu[currentCategory].splice(index,1);
-
-saveData();
-
-renderProducts();
-
-}
-
-function closeProducts(){
-
-document.getElementById("productsModal").style.display="none";
-
-}
-
-function addProductToOrder(index){
-
-let product=menu[currentCategory][index];
-
-currentOrder.push(product);
-
-total += product.price;
-
-renderOrder();
-
-}
-
-function renderOrder(){
-
-let container=document.getElementById("orderItems");
-
-if(currentOrder.length===0){
-
-container.innerHTML="Нет блюд";
-
-}else{
-
-container.innerHTML="";
-
-currentOrder.forEach((item,index)=>{
-
-container.innerHTML += `
-<div class="order-item">
-
-<div>
-${item.name} — ${item.price} ₽
-</div>
-
-<button class="remove-btn"
-onclick="removeOrderItem(${index})">
-X
-</button>
-
-</div>
-`;
-
-});
-
-}
-
-document.getElementById("total").innerText=total+" ₽";
-
-}
-
-function removeOrderItem(index){
-
-total -= currentOrder[index].price;
-
-currentOrder.splice(index,1);
-
-renderOrder();
-
-}
+/* =========================
+ПОДТВЕРЖДЕНИЕ ЗАКАЗА
+========================= */
 
 function confirmOrder(){
 
 if(currentOrder.length===0){
+
 alert("Заказ пуст");
+
 return;
+
 }
 
-let time = new Date().toLocaleString();
+let table =
+document.getElementById(
+"tableNumber"
+).value;
+
+if(!table){
+
+alert("Введите номер столика");
+
+return;
+
+}
+
+let time =
+new Date().toLocaleString();
 
 allOrders.push({
+
+table:table,
+
 time:time,
+
 items:[...currentOrder],
+
 total:total
+
 });
 
 saveData();
 
-alert("Заказ сохранен");
+alert("Заказ сохранён");
 
 currentOrder=[];
+
 total=0;
+
+document.getElementById(
+"tableNumber"
+).value="";
 
 renderOrder();
 
 }
 
+/* =========================
+ОТКРЫТЬ ЗАКАЗЫ
+========================= */
+
 function openOrders(){
 
-document.getElementById("ordersModal").style.display="flex";
+document.getElementById(
+"ordersModal"
+).style.display="flex";
 
-let container=document.getElementById("ordersHistory");
+let container =
+document.getElementById(
+"ordersHistory"
+);
 
 container.innerHTML="";
 
 if(allOrders.length===0){
 
-container.innerHTML="Пока заказов нет";
+container.innerHTML=
+"Нет заказов";
 
 return;
 
@@ -678,11 +241,17 @@ return;
 allOrders.forEach((order,index)=>{
 
 container.innerHTML += `
+
 <div class="history-order">
 
 <h3>
 Заказ #${index+1}
 </h3>
+
+<p>
+Столик:
+<b>${order.table}</b>
+</p>
 
 <p>
 ${order.time}
@@ -691,32 +260,189 @@ ${order.time}
 <br>
 
 ${order.items.map(i=>`
+
 ${i.name} — ${i.price} ₽
+
 `).join("<br>")}
 
 <br><br>
 
 <b>
-Итого: ${order.total} ₽
+Итого:
+${order.total} ₽
 </b>
 
+<br><br>
+
+<button
+onclick="
+editOrder(${index})
+"
+class="edit-btn">
+Редактировать
+</button>
+
+<button
+onclick="
+deleteOrder(${index})
+"
+class="delete-btn">
+Удалить
+</button>
+
 </div>
+
 `;
 
 });
 
 }
 
-function closeOrders(){
+/* =========================
+УДАЛИТЬ ЗАКАЗ
+========================= */
 
-document.getElementById("ordersModal").style.display="none";
+function deleteOrder(index){
+
+let confirmDelete =
+confirm("Удалить заказ?");
+
+if(!confirmDelete) return;
+
+allOrders.splice(index,1);
+
+saveData();
+
+openOrders();
 
 }
 
-renderCategories();
-renderOrder();
+/* =========================
+РЕДАКТИРОВАТЬ ЗАКАЗ
+========================= */
 
-</script>
+function editOrder(index){
 
-</body>
-</html>
+let newTable = prompt(
+"Новый номер столика",
+allOrders[index].table
+);
+
+if(!newTable) return;
+
+allOrders[index].table =
+newTable;
+
+saveData();
+
+openOrders();
+
+}
+
+/* =========================
+НАСТРОЙКИ
+========================= */
+
+function openSettings(){
+
+document.getElementById(
+"settingsModal"
+).style.display="flex";
+
+renderSavedOrders();
+
+}
+
+function closeSettings(){
+
+document.getElementById(
+"settingsModal"
+).style.display="none";
+
+}
+
+function renderSavedOrders(){
+
+let container =
+document.getElementById(
+"savedOrders"
+);
+
+container.innerHTML="";
+
+if(allOrders.length===0){
+
+container.innerHTML=
+"Нет сохранённых заказов";
+
+return;
+
+}
+
+allOrders.forEach((order,index)=>{
+
+container.innerHTML += `
+
+<div class="history-order">
+
+<h3>
+Заказ #${index+1}
+</h3>
+
+<p>
+Столик:
+${order.table}
+</p>
+
+<p>
+${order.time}
+</p>
+
+<br>
+
+<b>
+${order.total} ₽
+</b>
+
+<br><br>
+
+<button
+onclick="
+deleteSavedOrder(${index})
+"
+class="delete-btn">
+Удалить навсегда
+</button>
+
+</div>
+
+`;
+
+});
+
+}
+
+/* =========================
+УДАЛИТЬ НАВСЕГДА
+========================= */
+
+function deleteSavedOrder(index){
+
+let confirmDelete =
+confirm(
+"Удалить заказ навсегда?"
+);
+
+if(!confirmDelete) return;
+
+allOrders.splice(index,1);
+
+saveData();
+
+renderSavedOrders();
+
+openOrders();
+
+}
+
+               </script>
