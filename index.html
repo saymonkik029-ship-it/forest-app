@@ -1,139 +1,22 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Forest Restaurant PRO</title>
+<!-- ДОБАВЬ ВНУТРИ .header -->
+<button class="settings-top" onclick="openSettings()">⚙️</button>
 
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
-}
 
-body{
-background:#041b12;
-color:white;
-padding:15px;
-}
-
-.header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:20px;
-}
-
-.logo{
-display:flex;
-align-items:center;
-gap:10px;
-}
-
-.logo h1{
-font-size:42px;
-}
-
-.logo p{
-color:#8fffd2;
-}
-
-.top-buttons{
-display:flex;
-gap:10px;
-}
-
-.top-btn{
-border:none;
-padding:18px 25px;
-border-radius:22px;
-font-size:20px;
-font-weight:bold;
-color:white;
-cursor:pointer;
-}
-
-.add-view{
-background:linear-gradient(45deg,#ff7a00,#ff2d55);
-}
-
-.orders-btn{
-background:linear-gradient(45deg,#00c6ff,#00d49f);
-}
-
-.settings-btn{
-position:fixed;
-right:20px;
-bottom:20px;
-width:70px;
-height:70px;
-border-radius:50%;
-border:none;
-background:#0b1020;
-color:white;
-font-size:34px;
-cursor:pointer;
-box-shadow:0 0 20px rgba(0,0,0,0.5);
-z-index:999;
-}
-
-.categories{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:15px;
-margin-bottom:25px;
-}
-
-.category{
-background:#02180f;
-padding:35px 20px;
-border-radius:30px;
-font-size:28px;
-font-weight:bold;
-cursor:pointer;
-position:relative;
-}
-
-.category-tools{
+.settings-top{
 position:absolute;
-top:10px;
-right:10px;
-display:flex;
-gap:8px;
-}
-
-.tool-btn{
+top:20px;
+right:20px;
+width:55px;
+height:55px;
 border:none;
-width:28px;
-height:28px;
 border-radius:50%;
+background:#101728;
+color:white;
+font-size:26px;
 cursor:pointer;
-font-size:14px;
-font-weight:bold;
-}
-
-.edit-btn{
-background:#00c6ff;
-color:white;
-}
-
-.delete-btn{
-background:#ff2d55;
-color:white;
-}
-
-.order-box{
-background:#02180f;
-padding:25px;
-border-radius:35px;
-margin-top:20px;
-}
-
-.order-box h2{
-font-size:50px;
-margin-bottom:20px;
+box-shadow:0 0 15px rgba(0,0,0,0.4);
+z-index:999;
 }
 
 .table-input{
@@ -143,366 +26,353 @@ border:none;
 border-radius:15px;
 font-size:20px;
 margin-bottom:15px;
-}
-
-.order-item{
-display:flex;
-justify-content:space-between;
-align-items:center;
 background:#06261b;
-padding:12px;
-border-radius:15px;
-margin-bottom:10px;
-}
-
-.remove-item{
-background:red;
-border:none;
 color:white;
-padding:8px 12px;
-border-radius:10px;
-cursor:pointer;
 }
 
-.total{
-display:flex;
-justify-content:space-between;
-font-size:28px;
-font-weight:bold;
-margin:20px 0;
-}
-
-.accept-btn{
-width:100%;
-padding:25px;
-border:none;
-border-radius:25px;
-font-size:35px;
-font-weight:bold;
-background:linear-gradient(45deg,#00d49f,#32d9c8);
-color:white;
-cursor:pointer;
-}
-
-.modal{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,0.8);
-display:none;
-justify-content:center;
-align-items:center;
-z-index:1000;
-}
-
-.modal-content{
-background:#06261b;
-padding:20px;
-border-radius:25px;
-width:90%;
-max-height:90vh;
-overflow:auto;
-}
-
-.modal-content h2{
-margin-bottom:15px;
-font-size:32px;
-}
-
-.food-item{
-background:#02180f;
-padding:15px;
-border-radius:20px;
-margin-bottom:10px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-}
-
-.food-buttons{
-display:flex;
-gap:10px;
-}
-
-.food-buttons button{
-border:none;
-padding:8px 12px;
-border-radius:10px;
-cursor:pointer;
-color:white;
-font-weight:bold;
-}
-
-.add-food{
-background:#00c853;
-}
-
-.edit-food{
-background:#00c6ff;
-}
-
-.delete-food{
-background:#ff2d55;
-}
-
-.close-btn{
-margin-top:15px;
-padding:12px 20px;
-border:none;
-border-radius:15px;
-background:red;
-color:white;
-font-size:18px;
-cursor:pointer;
-width:100%;
-}
-
-.history-order{
-background:#02180f;
+.order-history-box{
+background:#041b12;
 padding:15px;
 border-radius:20px;
 margin-bottom:15px;
 }
 
-.small{
-font-size:14px;
+.history-title{
+font-size:22px;
+font-weight:bold;
+margin-bottom:8px;
+}
+
+.history-text{
 color:#9affd8;
 margin-top:5px;
+font-size:15px;
 }
+
 </style>
-</head>
-
-<body>
-
-<div class="header">
-
-<div class="logo">
-<div style="font-size:55px;">🌲</div>
-<div>
-<h1>Forest</h1>
-<p>Restaurant PRO</p>
-</div>
-</div>
-
-<div class="top-buttons">
-<button class="top-btn add-view" onclick="addCategory()">+ Вид</button>
-<button class="top-btn orders-btn" onclick="openOrders()">Заказы</button>
-</div>
-
-</div>
-
-<div class="categories" id="categories"></div>
-
-<div class="order-box">
-
-<h2>Текущий заказ</h2>
-
-<input class="table-input" id="tableNumber" placeholder="Номер столика">
-
-<div id="orderItems"></div>
-
-<div class="total">
-<span>Итого</span>
-<span id="totalPrice">0 ₽</span>
-</div>
-
-<button class="accept-btn" onclick="acceptOrder()">
-Принять заказ
-</button>
-
-</div>
-
-<button class="settings-btn" onclick="openSettings()">⚙️</button>
-
-<!-- MODAL -->
-<div class="modal" id="modal">
-<div class="modal-content" id="modalContent"></div>
-</div>
 
 <script>
 
-let categories = JSON.parse(localStorage.getItem("categories")) || {
-"Первое":[
-{name:"Борщ",price:350},
-{name:"Суп",price:280}
-],
-"Второе":[
-{name:"Стейк",price:900}
-],
-"Десерты":[
-{name:"Чизкейк",price:300}
-],
-"Напитки":[
-{name:"Кола",price:150}
-],
-"Алкоголь":[
-{name:"Вино",price:700}
-]
+/* ===== СОХРАНЕНИЕ ===== */
+
+let orderHistory =
+JSON.parse(localStorage.getItem("orderHistory")) || [];
+
+/* ===== НОМЕР СТОЛА ===== */
+
+const orderBox = document.querySelector(".order-box");
+
+const tableInputHTML = `
+<input
+id="tableNumber"
+class="table-input"
+placeholder="Номер столика">
+`;
+
+orderBox.insertAdjacentHTML(
+"afterbegin",
+tableInputHTML
+);
+
+/* ===== ИСТОРИЯ ===== */
+
+function saveHistory(order){
+
+orderHistory.push(order);
+
+localStorage.setItem(
+"orderHistory",
+JSON.stringify(orderHistory)
+);
+
+}
+
+/* ===== ПРИНЯТЬ ЗАКАЗ ===== */
+
+function acceptOrder(){
+
+if(currentOrder.length===0){
+
+alert("Добавьте блюда");
+return;
+
+}
+
+let table =
+document.getElementById("tableNumber").value || "Без номера";
+
+let total =
+currentOrder.reduce((a,b)=>a+b.price,0);
+
+let order = {
+
+table:table,
+
+items:[...currentOrder],
+
+total:total,
+
+time:new Date().toLocaleString()
+
 };
 
-let currentOrder = [];
-let orders = JSON.parse(localStorage.getItem("orders")) || [];
+/* обычные заказы */
+orders.push(order);
 
-function saveData(){
-localStorage.setItem("categories",JSON.stringify(categories));
-localStorage.setItem("orders",JSON.stringify(orders));
+/* история */
+saveHistory(order);
+
+/* сохранить */
+saveData();
+
+alert("Заказ принят");
+
+/* очистка */
+
+currentOrder=[];
+
+renderOrder();
+
+document.getElementById(
+"tableNumber"
+).value="";
+
 }
 
-function renderCategories(){
-const box=document.getElementById("categories");
-box.innerHTML="";
+/* ===== НАСТРОЙКИ ===== */
 
-for(let category in categories){
+function openSettings(){
 
-box.innerHTML+=`
-<div class="category" onclick="openCategory('${category}')">
+const modal =
+document.getElementById("modal");
 
-${category}
+const content =
+document.getElementById("modalContent");
 
-<div class="category-tools">
+let html = `
+<h2>Настройки</h2>
 
-<button class="tool-btn edit-btn"
-onclick="event.stopPropagation();editCategory('${category}')">
-✏️
-</button>
-
-<button class="tool-btn delete-btn"
-onclick="event.stopPropagation();deleteCategory('${category}')">
-🗑
-</button>
-
-</div>
-
+<div style="
+margin-bottom:20px;
+font-size:20px;
+font-weight:bold;
+">
+История всех заказов
 </div>
 `;
-}
+
+if(orderHistory.length===0){
+
+html += `
+<div class="order-history-box">
+История пуста
+</div>
+`;
+
 }
 
-function addCategory(){
-let name=prompt("Название категории");
-if(!name)return;
+/* ВСЯ ИСТОРИЯ */
 
-categories[name]=[];
-saveData();
-renderCategories();
+orderHistory.forEach((order,index)=>{
+
+html += `
+
+<div class="order-history-box">
+
+<div class="history-title">
+Заказ #${index+1}
+</div>
+
+<div class="history-text">
+⏰ ${order.time}
+</div>
+
+<div class="history-text">
+🪑 Столик:
+${order.table}
+</div>
+
+<div class="history-text">
+🍽 Блюда:
+${order.items.map(i=>i.name).join(", ")}
+</div>
+
+<div class="history-text">
+💰 Сумма:
+${order.total} ₽
+</div>
+
+<button
+style="
+margin-top:15px;
+width:100%;
+padding:12px;
+border:none;
+border-radius:15px;
+background:#ff2d55;
+color:white;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+"
+onclick="deleteHistoryOrder(${index})">
+
+Удалить из истории
+
+</button>
+
+</div>
+
+`;
+
+});
+
+/* КНОПКИ */
+
+html += `
+
+<button
+style="
+margin-top:15px;
+width:100%;
+padding:15px;
+border:none;
+border-radius:18px;
+background:#ff7a00;
+color:white;
+font-size:18px;
+font-weight:bold;
+cursor:pointer;
+"
+onclick="clearHistory()">
+
+Очистить всю историю
+
+</button>
+
+<button
+class="close-btn"
+onclick="closeModal()">
+
+Закрыть
+
+</button>
+`;
+
+content.innerHTML = html;
+
+modal.style.display="flex";
+
 }
+
+/* ===== УДАЛИТЬ ИЗ ИСТОРИИ ===== */
+
+function deleteHistoryOrder(index){
+
+if(confirm("Удалить заказ из истории?")){
+
+orderHistory.splice(index,1);
+
+localStorage.setItem(
+"orderHistory",
+JSON.stringify(orderHistory)
+);
+
+openSettings();
+
+}
+
+}
+
+/* ===== ОЧИСТИТЬ ВСЮ ИСТОРИЮ ===== */
+
+function clearHistory(){
+
+if(confirm("Удалить всю историю заказов?")){
+
+orderHistory=[];
+
+localStorage.setItem(
+"orderHistory",
+JSON.stringify(orderHistory)
+);
+
+openSettings();
+
+}
+
+}
+
+/* ===== УДАЛЕНИЕ КАТЕГОРИЙ ===== */
 
 function deleteCategory(name){
+
 if(confirm("Удалить категорию?")){
+
 delete categories[name];
+
 saveData();
+
 renderCategories();
-}
+
 }
 
+}
+
+/* ===== РЕДАКТИРОВАНИЕ КАТЕГОРИИ ===== */
+
 function editCategory(name){
-let newName=prompt("Новое название",name);
+
+let newName = prompt(
+"Новое название",
+name
+);
 
 if(!newName)return;
 
-categories[newName]=categories[name];
+categories[newName] =
+categories[name];
+
 delete categories[name];
 
 saveData();
+
 renderCategories();
+
 }
 
-function openCategory(category){
-
-const modal=document.getElementById("modal");
-const content=document.getElementById("modalContent");
-
-let html=`
-<h2>${category}</h2>
-
-<button class="food-buttons add-food"
-onclick="addFood('${category}')"
-style="padding:15px;width:100%;margin-bottom:15px;">
-Добавить блюдо
-</button>
-`;
-
-categories[category].forEach((food,index)=>{
-
-html+=`
-<div class="food-item">
-
-<div>
-<div style="font-size:22px;font-weight:bold;">
-${food.name}
-</div>
-
-<div class="small">${food.price} ₽</div>
-</div>
-
-<div class="food-buttons">
-
-<button class="add-food"
-onclick="addToOrder('${category}',${index})">
-+
-</button>
-
-<button class="edit-food"
-onclick="editFood('${category}',${index})">
-✏️
-</button>
-
-<button class="delete-food"
-onclick="deleteFood('${category}',${index})">
-🗑
-</button>
-
-</div>
-
-</div>
-`;
-
-});
-
-html+=`
-<button class="close-btn" onclick="closeModal()">
-Закрыть
-</button>
-`;
-
-content.innerHTML=html;
-modal.style.display="flex";
-}
-
-function closeModal(){
-document.getElementById("modal").style.display="none";
-}
-
-function addFood(category){
-
-let name=prompt("Название блюда");
-if(!name)return;
-
-let price=prompt("Цена");
-
-categories[category].push({
-name,
-price:Number(price)
-});
-
-saveData();
-openCategory(category);
-}
+/* ===== РЕДАКТИРОВАНИЕ БЛЮДА ===== */
 
 function editFood(category,index){
 
-let food=categories[category][index];
+let food =
+categories[category][index];
 
-let newName=prompt("Название",food.name);
+let newName =
+prompt(
+"Название блюда",
+food.name
+);
+
 if(!newName)return;
 
-let newPrice=prompt("Цена",food.price);
+let newPrice =
+prompt(
+"Цена",
+food.price
+);
 
-food.name=newName;
-food.price=Number(newPrice);
+food.name = newName;
+
+food.price = Number(newPrice);
 
 saveData();
+
 openCategory(category);
+
 }
+
+/* ===== УДАЛЕНИЕ БЛЮДА ===== */
 
 function deleteFood(category,index){
 
@@ -511,222 +381,11 @@ if(confirm("Удалить блюдо?")){
 categories[category].splice(index,1);
 
 saveData();
+
 openCategory(category);
 
 }
-}
-
-function addToOrder(category,index){
-
-let food=categories[category][index];
-
-currentOrder.push(food);
-
-renderOrder();
-}
-
-function renderOrder(){
-
-const box=document.getElementById("orderItems");
-
-box.innerHTML="";
-
-let total=0;
-
-currentOrder.forEach((food,index)=>{
-
-total+=food.price;
-
-box.innerHTML+=`
-<div class="order-item">
-
-<div>
-${food.name}
-<br>
-${food.price} ₽
-</div>
-
-<button class="remove-item"
-onclick="removeOrderItem(${index})">
-✖
-</button>
-
-</div>
-`;
-
-});
-
-document.getElementById("totalPrice").innerText=total+" ₽";
-}
-
-function removeOrderItem(index){
-
-currentOrder.splice(index,1);
-
-renderOrder();
-}
-
-function acceptOrder(){
-
-if(currentOrder.length===0){
-alert("Добавьте блюда");
-return;
-}
-
-let table=document.getElementById("tableNumber").value || "Без номера";
-
-orders.push({
-table,
-items:[...currentOrder],
-time:new Date().toLocaleString(),
-total:currentOrder.reduce((a,b)=>a+b.price,0)
-});
-
-saveData();
-
-alert("Заказ принят");
-
-currentOrder=[];
-
-renderOrder();
-
-document.getElementById("tableNumber").value="";
-}
-
-function openOrders(){
-
-const modal=document.getElementById("modal");
-const content=document.getElementById("modalContent");
-
-let html=`<h2>Заказы</h2>`;
-
-orders.forEach((order,index)=>{
-
-html+=`
-<div class="history-order">
-
-<div style="font-size:22px;font-weight:bold;">
-Столик: ${order.table}
-</div>
-
-<div class="small">
-${order.time}
-</div>
-
-<div style="margin-top:10px;">
-${order.items.map(i=>i.name).join(", ")}
-</div>
-
-<div style="margin-top:10px;font-weight:bold;">
-${order.total} ₽
-</div>
-
-<div style="display:flex;gap:10px;margin-top:15px;">
-
-<button class="edit-food"
-onclick="editOrder(${index})">
-Редактировать
-</button>
-
-<button class="delete-food"
-onclick="deleteOrder(${index})">
-Удалить
-</button>
-
-</div>
-
-</div>
-`;
-
-});
-
-html+=`
-<button class="close-btn" onclick="closeModal()">
-Закрыть
-</button>
-`;
-
-content.innerHTML=html;
-modal.style.display="flex";
-}
-
-function deleteOrder(index){
-
-if(confirm("Удалить заказ?")){
-
-orders.splice(index,1);
-
-saveData();
-
-openOrders();
 
 }
-}
-
-function editOrder(index){
-
-let order=orders[index];
-
-currentOrder=[...order.items];
-
-document.getElementById("tableNumber").value=order.table;
-
-renderOrder();
-
-closeModal();
-}
-
-function openSettings(){
-
-const modal=document.getElementById("modal");
-const content=document.getElementById("modalContent");
-
-content.innerHTML=`
-
-<h2>Настройки</h2>
-
-<div class="history-order">
-
-<div style="font-size:22px;font-weight:bold;">
-Всего заказов: ${orders.length}
-</div>
-
-</div>
-
-<button class="delete-food"
-style="width:100%;padding:15px;font-size:20px;"
-onclick="clearHistory()">
-
-Удалить историю заказов
-
-</button>
-
-<button class="close-btn" onclick="closeModal()">
-Закрыть
-</button>
-
-`;
-
-modal.style.display="flex";
-}
-
-function clearHistory(){
-
-if(confirm("Удалить всю историю?")){
-
-orders=[];
-
-saveData();
-
-openSettings();
-
-}
-}
-
-renderCategories();
-renderOrder();
 
 </script>
-
-</body>
-</html>
