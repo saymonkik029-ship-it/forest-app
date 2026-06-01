@@ -4,38 +4,177 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Forest Restaurant PRO</title>
-<script src="https://cdn.tailwindcss.com"></script>
 
 <style>
-body{
+*{
 margin:0;
+padding:0;
+box-sizing:border-box;
 font-family:Arial,sans-serif;
+}
+
+body{
 background:#08130d;
 color:white;
-overflow:hidden;
+overflow-x:hidden;
 }
+
+/* Фон */
 .bg{
 position:fixed;
 inset:0;
-background:url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1600') center/cover;
-opacity:.14;
-z-index:-2;
-}
-.overlay{
-position:fixed;
-inset:0;
-background:linear-gradient(135deg,#08130d,#10281b,#173626);
+background:url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1974&auto=format&fit=crop') center/cover;
+filter:brightness(0.35);
 z-index:-1;
 }
-.glass{
-background:rgba(10,22,16,.78);
-backdrop-filter:blur(16px);
+
+/* Шапка */
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px;
+background:rgba(0,0,0,0.4);
+backdrop-filter:blur(8px);
+position:sticky;
+top:0;
+z-index:100;
 }
-button{
-transition:.2s;
+
+.logo{
+font-size:28px;
+font-weight:bold;
+color:#4ade80;
 }
-button:active{
-transform:scale(.96);
+
+nav{
+display:flex;
+gap:15px;
+}
+
+nav button{
+padding:10px 18px;
+border:none;
+border-radius:12px;
+background:#14532d;
+color:white;
+cursor:pointer;
+transition:0.3s;
+font-size:16px;
+}
+
+nav button:hover{
+background:#22c55e;
+transform:scale(1.05);
+}
+
+/* Главный экран */
+.hero{
+height:90vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
+}
+
+.hero h1{
+font-size:55px;
+margin-bottom:20px;
+animation:fade 1s ease;
+}
+
+.hero p{
+font-size:20px;
+max-width:700px;
+margin-bottom:30px;
+line-height:1.6;
+animation:fade 1.5s ease;
+}
+
+.main-btn{
+padding:16px 35px;
+border:none;
+border-radius:16px;
+background:#22c55e;
+color:white;
+font-size:20px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.main-btn:hover{
+transform:scale(1.08);
+background:#16a34a;
+}
+
+/* Карточки */
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+padding:50px 20px;
+}
+
+.card{
+background:rgba(255,255,255,0.08);
+padding:25px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+transition:0.4s;
+}
+
+.card:hover{
+transform:translateY(-10px);
+background:rgba(255,255,255,0.15);
+}
+
+.card h2{
+margin-bottom:15px;
+color:#4ade80;
+}
+
+.card p{
+line-height:1.5;
+}
+
+/* Footer */
+footer{
+text-align:center;
+padding:25px;
+background:rgba(0,0,0,0.4);
+margin-top:40px;
+}
+
+/* Анимация */
+@keyframes fade{
+from{
+opacity:0;
+transform:translateY(30px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+/* Телефон */
+@media(max-width:700px){
+
+.hero h1{
+font-size:38px;
+}
+
+.hero p{
+font-size:17px;
+}
+
+nav{
+flex-wrap:wrap;
+justify-content:center;
+}
+
 }
 </style>
 </head>
@@ -43,224 +182,79 @@ transform:scale(.96);
 <body>
 
 <div class="bg"></div>
-<div class="overlay"></div>
 
-<div class="h-screen flex flex-col">
+<header>
+<div class="logo">FOREST</div>
 
-<div class="glass p-4 flex items-center justify-between border-b border-emerald-700">
+<nav>
+<button onclick="scrollToSection('home')">Главная</button>
+<button onclick="scrollToSection('menu')">Меню</button>
+<button onclick="scrollToSection('about')">О нас</button>
+<button onclick="showMessage()">Контакты</button>
+</nav>
+</header>
 
-<div>
-<div class="text-3xl font-black">🌲 Forest</div>
-<div class="text-emerald-300 text-sm">Restaurant PRO</div>
-</div>
+<section class="hero" id="home">
+<h1>Forest Restaurant PRO</h1>
 
-<div class="flex gap-2">
+<p>
+Лучший ресторан с атмосферой леса,
+неоновым дизайном и современной кухней.
+</p>
 
-<button onclick="openCategoryModal()"
-class="bg-gradient-to-r from-orange-500 to-red-500 px-4 py-3 rounded-2xl font-black">
-+ Вид
+<button class="main-btn" onclick="showMessage()">
+Забронировать стол
 </button>
+</section>
 
-<button onclick="openOrders()"
-class="bg-gradient-to-r from-cyan-500 to-teal-500 px-5 py-3 rounded-2xl font-black">
-Заказы
-</button>
+<section class="cards" id="menu">
 
+<div class="card">
+<h2>🍕 Пицца</h2>
+<p>Горячая итальянская пицца из печи.</p>
 </div>
 
+<div class="card">
+<h2>🍔 Бургеры</h2>
+<p>Сочные бургеры с фирменным соусом.</p>
 </div>
 
-<div class="flex-1 overflow-auto p-3">
-
-<div id="categories"
-class="grid grid-cols-2 gap-3 mb-4"></div>
-
-<div id="menuSection" class="hidden">
-
-<div class="flex justify-between items-center mb-4">
-
-<div id="categoryTitle"
-class="text-3xl font-black"></div>
-
-<button onclick="openAddModal()"
-class="bg-gradient-to-r from-emerald-500 to-green-600 px-4 py-3 rounded-2xl font-black">
-+ Добавить
-</button>
-
+<div class="card">
+<h2>🥗 Салаты</h2>
+<p>Свежие овощи и натуральные продукты.</p>
 </div>
 
-<div id="dishes" class="space-y-3"></div>
-
+<div class="card">
+<h2>🍰 Десерты</h2>
+<p>Сладости и напитки премиум уровня.</p>
 </div>
 
-<div class="glass rounded-[30px] p-4 mt-5">
+</section>
 
-<div class="text-3xl font-black mb-4">
-Текущий заказ
-</div>
+<section class="hero" id="about">
+<h1>О нас</h1>
 
-<div id="orderList" class="space-y-3 mb-4"></div>
+<p>
+Forest Restaurant — современный ресторан
+с красивым дизайном, быстрым сервисом
+и уникальной атмосферой.
+</p>
+</section>
 
-<div class="flex justify-between text-2xl font-black mb-4">
-<span>Итого</span>
-<span id="total">0 ₽</span>
-</div>
-
-<button onclick="acceptOrder()"
-class="w-full py-4 rounded-3xl text-2xl font-black bg-gradient-to-r from-emerald-500 to-teal-500">
-Принять заказ
-</button>
-
-</div>
-
-</div>
+<footer>
+© 2025 Forest Restaurant PRO
+</footer>
 
 <script>
+function showMessage(){
+alert("Спасибо за интерес к Forest Restaurant!");
+}
 
-let categories = ['Первое','Второе','Десерты','Напитки','Алкоголь'];
-
-let menu = {};
-let currentCategory='';
-let currentOrder=[];
-
-categories.forEach(c=>menu[c]=[]);
-
-function renderCategories(){
-
-const container=document.getElementById('categories');
-
-container.innerHTML='';
-
-categories.forEach(category=>{
-
-container.innerHTML += `
-<button onclick="selectCategory('${category}')"
-class="glass rounded-3xl p-5 text-left">
-
-<div class="text-2xl font-black">${category}</div>
-
-</button>
-`;
-
+function scrollToSection(id){
+document.getElementById(id).scrollIntoView({
+behavior:"smooth"
 });
-
 }
-
-function selectCategory(category){
-
-currentCategory=category;
-
-document.getElementById('menuSection').classList.remove('hidden');
-
-document.getElementById('categoryTitle').innerText=category;
-
-renderDishes();
-
-}
-
-function renderDishes(){
-
-const container=document.getElementById('dishes');
-
-container.innerHTML='';
-
-if(menu[currentCategory].length===0){
-
-container.innerHTML=`
-<div class="glass rounded-3xl p-6 text-center opacity-70">
-Нет блюд
-</div>
-`;
-
-return;
-
-}
-
-menu[currentCategory].forEach((dish,index)=>{
-
-container.innerHTML += `
-<div class="glass rounded-[30px] p-4">
-
-<div class="flex justify-between items-center">
-
-<div>
-
-<div class="text-2xl font-black">${dish.name}</div>
-
-<div class="text-emerald-400 text-xl">
-${dish.price} ₽
-</div>
-
-</div>
-
-<button onclick="addToOrder(${index})"
-class="bg-gradient-to-r from-emerald-500 to-green-600 px-5 py-3 rounded-2xl font-black">
-+
-</button>
-
-</div>
-
-</div>
-`;
-
-});
-
-}
-
-function addToOrder(index){
-
-currentOrder.push(menu[currentCategory][index]);
-
-renderOrder();
-
-}
-
-function renderOrder(){
-
-const container=document.getElementById('orderList');
-
-container.innerHTML='';
-
-let total=0;
-
-currentOrder.forEach((dish)=>{
-
-total += dish.price;
-
-container.innerHTML += `
-<div class="glass rounded-2xl p-3 flex justify-between items-center">
-
-<div>
-<div class="font-black">${dish.name}</div>
-<div class="text-emerald-400">${dish.price} ₽</div>
-</div>
-
-</div>
-`;
-
-});
-
-document.getElementById('total').innerText=total + ' ₽';
-
-}
-
-function acceptOrder(){
-
-if(currentOrder.length===0){
-alert('Заказ пуст');
-return;
-}
-
-alert('Заказ принят 🌲');
-
-currentOrder=[];
-
-renderOrder();
-
-}
-
-renderCategories();
-
 </script>
 
 </body>
