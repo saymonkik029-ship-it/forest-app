@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forest Restaurant PRO</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial;
+    background:linear-gradient(180deg,#001a0f,#00331f);
+    color:white;
+}
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px;
+}
+
+.logo{
+    font-size:40px;
+    font-weight:bold;
+}
+
+.top-buttons{
+    display:flex;
+    gap:10px;
+}
+
+.btn{
+    padding:15px 25px;
+    border:none;
+    border-radius:20px;
+    color:white;
+    font-size:22px;
+    font-weight:bold;
+}
+
+.orange{
+    background:linear-gradient(90deg,#ff7b00,#ff3d7f);
+}
+
+.blue{
+    background:linear-gradient(90deg,#00b7ff,#00ffd0);
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+    padding:20px;
+}
+
+.card{
+    background:#00160f;
+    border-radius:25px;
+    padding:35px 20px;
+    font-size:32px;
+    font-weight:bold;
+}
+
+.order{
+    margin:20px;
+    background:#00160f;
+    border-radius:30px;
+    padding:25px;
+}
+
+.order h1{
+    font-size:50px;
+}
+
+.total{
+    display:flex;
+    justify-content:space-between;
+    font-size:40px;
+    margin-top:20px;
+}
+
+.accept{
+    margin-top:30px;
+    width:100%;
+    padding:25px;
+    border:none;
+    border-radius:30px;
+    background:#22e0c0;
+    color:white;
+    font-size:40px;
+    font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <div>
+        <div class="logo">🌲 Forest</div>
+        <div style="font-size:25px;">Restaurant PRO</div>
+    </div>
+
+    <div class="top-buttons">
+        <button class="btn orange">+ Вид</button>
+        <button class="btn blue">Заказы</button>
+    </div>
+</div>
+
+<div class="grid">
+    <div class="card">Первое</div>
+    <div class="card">Второе</div>
+    <div class="card">Десерты</div>
+    <div class="card">Напитки</div>
+    <div class="card">Алкоголь</div>
+</div>
+
+<div class="order">
+    <h1>Текущий заказ</h1>
+
+    <div class="total">
+        <span>Итого</span>
+        <span>0 ₽</span>
+    </div>
+
+    <button class="accept">Принять заказ</button>
+</div>
+
+</body>
+</html>
