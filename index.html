@@ -15,7 +15,7 @@ font-family:Arial,sans-serif;
 }
 
 body{
-background:linear-gradient(90deg,#001a09,#003b12,#001a09);
+background:linear-gradient(135deg,#001a09,#003b12,#001a09);
 color:white;
 min-height:100vh;
 padding:18px;
@@ -38,12 +38,11 @@ gap:10px;
 }
 
 .logo h1{
-font-size:48px;
+font-size:42px;
 }
 
 .logo p{
 color:#8fffd0;
-font-size:18px;
 }
 
 .buttons{
@@ -53,9 +52,9 @@ gap:12px;
 
 .top-btn{
 border:none;
-padding:18px 24px;
-border-radius:22px;
-font-size:20px;
+padding:16px 22px;
+border-radius:20px;
+font-size:18px;
 font-weight:bold;
 color:white;
 cursor:pointer;
@@ -85,8 +84,8 @@ gap:18px;
 .category{
 background:rgba(0,0,0,0.55);
 border-radius:28px;
-padding:40px 20px;
-font-size:32px;
+padding:35px 20px;
+font-size:28px;
 font-weight:bold;
 cursor:pointer;
 transition:0.3s;
@@ -107,11 +106,7 @@ border-radius:35px;
 }
 
 .order-box h2{
-font-size:48px;
-margin-bottom:20px;
-}
-
-.order-items{
+font-size:40px;
 margin-bottom:20px;
 }
 
@@ -123,13 +118,12 @@ background:#062615;
 padding:12px;
 border-radius:15px;
 margin-bottom:10px;
-font-size:20px;
 }
 
 .remove-btn{
 background:red;
 border:none;
-padding:8px 14px;
+padding:8px 12px;
 border-radius:10px;
 color:white;
 cursor:pointer;
@@ -139,27 +133,21 @@ font-weight:bold;
 .total{
 display:flex;
 justify-content:space-between;
-font-size:30px;
+font-size:26px;
 font-weight:bold;
-margin-top:20px;
-margin-bottom:20px;
+margin:20px 0;
 }
 
 .accept-btn{
 width:100%;
-padding:26px;
+padding:22px;
 border:none;
-border-radius:30px;
+border-radius:25px;
 background:#25d7c0;
 color:white;
-font-size:32px;
+font-size:26px;
 font-weight:bold;
 cursor:pointer;
-transition:0.3s;
-}
-
-.accept-btn:hover{
-transform:scale(1.03);
 }
 
 /* MODAL */
@@ -178,16 +166,16 @@ padding:20px;
 .modal-content{
 background:#041b10;
 width:100%;
-max-width:500px;
+max-width:550px;
 padding:25px;
 border-radius:25px;
-max-height:80vh;
+max-height:90vh;
 overflow:auto;
 }
 
 .modal-content h2{
 margin-bottom:20px;
-font-size:34px;
+font-size:32px;
 }
 
 .product{
@@ -198,14 +186,38 @@ margin-bottom:12px;
 display:flex;
 justify-content:space-between;
 align-items:center;
-font-size:20px;
+}
+
+.product-buttons{
+display:flex;
+gap:8px;
 }
 
 .add-btn{
 background:#22c55e;
 border:none;
-padding:10px 18px;
-border-radius:12px;
+padding:10px 14px;
+border-radius:10px;
+color:white;
+font-weight:bold;
+cursor:pointer;
+}
+
+.edit-btn{
+background:#f59e0b;
+border:none;
+padding:10px 14px;
+border-radius:10px;
+color:white;
+font-weight:bold;
+cursor:pointer;
+}
+
+.delete-btn{
+background:#ef4444;
+border:none;
+padding:10px 14px;
+border-radius:10px;
 color:white;
 font-weight:bold;
 cursor:pointer;
@@ -219,11 +231,9 @@ border:none;
 border-radius:15px;
 background:#ff2d55;
 color:white;
-font-size:20px;
+font-size:18px;
 cursor:pointer;
 }
-
-/* ORDERS */
 
 .history-order{
 background:#0a2f1c;
@@ -232,36 +242,27 @@ border-radius:18px;
 margin-bottom:15px;
 }
 
-.history-order h3{
-margin-bottom:10px;
+input{
+width:100%;
+padding:14px;
+margin-bottom:12px;
+border:none;
+border-radius:12px;
+background:#0f2f1f;
+color:white;
+font-size:18px;
 }
 
-/* MOBILE */
-
-@media(max-width:700px){
-
-.logo h1{
-font-size:28px;
-}
-
-.category{
-font-size:22px;
-padding:28px 18px;
-}
-
-.order-box h2{
-font-size:34px;
-}
-
-.accept-btn{
-font-size:24px;
-}
-
-.top-btn{
-font-size:17px;
-padding:14px 18px;
-}
-
+.save-btn{
+width:100%;
+padding:15px;
+border:none;
+border-radius:15px;
+background:#22c55e;
+color:white;
+font-size:20px;
+font-weight:bold;
+cursor:pointer;
 }
 
 </style>
@@ -269,12 +270,10 @@ padding:14px 18px;
 
 <body>
 
-<!-- HEADER -->
-
 <div class="header">
 
 <div class="logo">
-<div style="font-size:48px;">🌲</div>
+<div style="font-size:45px;">🌲</div>
 
 <div>
 <h1>Forest</h1>
@@ -286,7 +285,7 @@ padding:14px 18px;
 <div class="buttons">
 
 <button class="top-btn view-btn"
-onclick="changeView()">
+onclick="addCategory()">
 + Вид
 </button>
 
@@ -299,44 +298,13 @@ onclick="openOrders()">
 
 </div>
 
-<!-- CATEGORIES -->
-
-<div class="categories">
-
-<div class="category"
-onclick="openCategory('Первое')">
-Первое
-</div>
-
-<div class="category"
-onclick="openCategory('Второе')">
-Второе
-</div>
-
-<div class="category"
-onclick="openCategory('Десерты')">
-Десерты
-</div>
-
-<div class="category"
-onclick="openCategory('Напитки')">
-Напитки
-</div>
-
-<div class="category"
-onclick="openCategory('Алкоголь')">
-Алкоголь
-</div>
-
-</div>
-
-<!-- ORDER BOX -->
+<div id="categories" class="categories"></div>
 
 <div class="order-box">
 
 <h2>Текущий заказ</h2>
 
-<div id="orderItems" class="order-items">
+<div id="orderItems">
 Нет блюд
 </div>
 
@@ -352,13 +320,20 @@ onclick="confirmOrder()">
 
 </div>
 
-<!-- PRODUCTS MODAL -->
+<!-- PRODUCTS -->
 
 <div class="modal" id="productsModal">
 
 <div class="modal-content">
 
 <h2 id="modalTitle">Категория</h2>
+
+<button class="save-btn"
+onclick="openAddProduct()">
++ Добавить блюдо
+</button>
+
+<br><br>
 
 <div id="productsList"></div>
 
@@ -371,7 +346,37 @@ onclick="closeProducts()">
 
 </div>
 
-<!-- ORDERS MODAL -->
+<!-- ADD PRODUCT -->
+
+<div class="modal" id="addProductModal">
+
+<div class="modal-content">
+
+<h2>Добавить блюдо</h2>
+
+<input type="text"
+id="productName"
+placeholder="Название блюда">
+
+<input type="number"
+id="productPrice"
+placeholder="Цена">
+
+<button class="save-btn"
+onclick="saveProduct()">
+Сохранить
+</button>
+
+<button class="close-btn"
+onclick="closeAddProduct()">
+Закрыть
+</button>
+
+</div>
+
+</div>
+
+<!-- ORDERS -->
 
 <div class="modal" id="ordersModal">
 
@@ -379,9 +384,7 @@ onclick="closeProducts()">
 
 <h2>Все заказы</h2>
 
-<div id="ordersHistory">
-Пока заказов нет
-</div>
+<div id="ordersHistory"></div>
 
 <button class="close-btn"
 onclick="closeOrders()">
@@ -394,52 +397,79 @@ onclick="closeOrders()">
 
 <script>
 
+let currentCategory = "";
 let currentOrder = [];
 let total = 0;
-let allOrders = [];
 
-let menu = {
-
-"Первое":[
-{name:"Борщ",price:450},
-{name:"Суп",price:390},
-{name:"Жаркое",price:700}
-],
-
-"Второе":[
-{name:"Стейк",price:1200},
-{name:"Курица",price:850},
-{name:"Паста",price:650}
-],
-
-"Десерты":[
-{name:"Торт",price:350},
-{name:"Мороженое",price:250}
-],
-
-"Напитки":[
-{name:"Лимонад",price:220},
-{name:"Кофе",price:180}
-],
-
-"Алкоголь":[
-{name:"Вино",price:1800},
-{name:"Виски",price:2600}
-]
-
+let menu = JSON.parse(localStorage.getItem("menu")) || {
+"Первое":[],
+"Второе":[],
+"Десерты":[],
+"Напитки":[],
+"Алкоголь":[]
 };
 
+let allOrders = JSON.parse(localStorage.getItem("orders")) || [];
+
+function saveData(){
+localStorage.setItem("menu",JSON.stringify(menu));
+localStorage.setItem("orders",JSON.stringify(allOrders));
+}
+
+function renderCategories(){
+
+let container=document.getElementById("categories");
+
+container.innerHTML="";
+
+Object.keys(menu).forEach(category=>{
+
+container.innerHTML += `
+<div class="category"
+onclick="openCategory('${category}')">
+${category}
+</div>
+`;
+
+});
+
+}
+
+function addCategory(){
+
+let name = prompt("Название нового вида");
+
+if(!name) return;
+
+menu[name]=[];
+
+saveData();
+
+renderCategories();
+
+}
+
 function openCategory(category){
+
+currentCategory=category;
 
 document.getElementById("productsModal").style.display="flex";
 
 document.getElementById("modalTitle").innerText=category;
 
-let html="";
+renderProducts();
 
-menu[category].forEach(product=>{
+}
 
-html += `
+function renderProducts(){
+
+let container=document.getElementById("productsList");
+
+container.innerHTML="";
+
+menu[currentCategory].forEach((product,index)=>{
+
+container.innerHTML += `
 <div class="product">
 
 <div>
@@ -447,29 +477,110 @@ ${product.name}<br>
 ${product.price} ₽
 </div>
 
+<div class="product-buttons">
+
 <button class="add-btn"
-onclick="addProduct('${product.name}',${product.price})">
-Добавить
+onclick="addProductToOrder(${index})">
++
 </button>
+
+<button class="edit-btn"
+onclick="editProduct(${index})">
+✏
+</button>
+
+<button class="delete-btn"
+onclick="deleteProduct(${index})">
+X
+</button>
+
+</div>
 
 </div>
 `;
 
 });
 
-document.getElementById("productsList").innerHTML=html;
+}
+
+function openAddProduct(){
+
+document.getElementById("addProductModal").style.display="flex";
+
+}
+
+function closeAddProduct(){
+
+document.getElementById("addProductModal").style.display="none";
+
+}
+
+function saveProduct(){
+
+let name=document.getElementById("productName").value;
+let price=document.getElementById("productPrice").value;
+
+if(!name || !price){
+alert("Заполните поля");
+return;
+}
+
+menu[currentCategory].push({
+name:name,
+price:Number(price)
+});
+
+saveData();
+
+renderProducts();
+
+closeAddProduct();
+
+document.getElementById("productName").value="";
+document.getElementById("productPrice").value="";
+
+}
+
+function editProduct(index){
+
+let newName=prompt("Новое название",menu[currentCategory][index].name);
+
+let newPrice=prompt("Новая цена",menu[currentCategory][index].price);
+
+if(!newName || !newPrice) return;
+
+menu[currentCategory][index].name=newName;
+menu[currentCategory][index].price=Number(newPrice);
+
+saveData();
+
+renderProducts();
+
+}
+
+function deleteProduct(index){
+
+menu[currentCategory].splice(index,1);
+
+saveData();
+
+renderProducts();
 
 }
 
 function closeProducts(){
+
 document.getElementById("productsModal").style.display="none";
+
 }
 
-function addProduct(name,price){
+function addProductToOrder(index){
 
-currentOrder.push({name,price});
+let product=menu[currentCategory][index];
 
-total += price;
+currentOrder.push(product);
+
+total += product.price;
 
 renderOrder();
 
@@ -497,7 +608,7 @@ ${item.name} — ${item.price} ₽
 </div>
 
 <button class="remove-btn"
-onclick="removeProduct(${index})">
+onclick="removeOrderItem(${index})">
 X
 </button>
 
@@ -512,7 +623,7 @@ document.getElementById("total").innerText=total+" ₽";
 
 }
 
-function removeProduct(index){
+function removeOrderItem(index){
 
 total -= currentOrder[index].price;
 
@@ -525,14 +636,11 @@ renderOrder();
 function confirmOrder(){
 
 if(currentOrder.length===0){
-
-alert("Добавьте блюда");
-
+alert("Заказ пуст");
 return;
-
 }
 
-let time = new Date().toLocaleTimeString();
+let time = new Date().toLocaleString();
 
 allOrders.push({
 time:time,
@@ -540,7 +648,9 @@ items:[...currentOrder],
 total:total
 });
 
-alert("Заказ подтвержден!");
+saveData();
+
+alert("Заказ сохранен");
 
 currentOrder=[];
 total=0;
@@ -553,17 +663,21 @@ function openOrders(){
 
 document.getElementById("ordersModal").style.display="flex";
 
-let html="";
+let container=document.getElementById("ordersHistory");
+
+container.innerHTML="";
 
 if(allOrders.length===0){
 
-html="Пока заказов нет";
+container.innerHTML="Пока заказов нет";
 
-}else{
+return;
+
+}
 
 allOrders.forEach((order,index)=>{
 
-html += `
+container.innerHTML += `
 <div class="history-order">
 
 <h3>
@@ -571,14 +685,14 @@ html += `
 </h3>
 
 <p>
-Время: ${order.time}
+${order.time}
 </p>
 
 <br>
 
-${order.items.map(i=>
-`${i.name} — ${i.price} ₽`
-).join("<br>")}
+${order.items.map(i=>`
+${i.name} — ${i.price} ₽
+`).join("<br>")}
 
 <br><br>
 
@@ -593,27 +707,14 @@ ${order.items.map(i=>
 
 }
 
-document.getElementById("ordersHistory").innerHTML=html;
-
-}
-
 function closeOrders(){
+
 document.getElementById("ordersModal").style.display="none";
-}
-
-function changeView(){
-
-let views=[
-"linear-gradient(90deg,#001a09,#003b12,#001a09)",
-"linear-gradient(90deg,#111827,#1f2937,#111827)",
-"linear-gradient(90deg,#1a0020,#3b0764,#1a0020)"
-];
-
-let random=views[Math.floor(Math.random()*views.length)];
-
-document.body.style.background=random;
 
 }
+
+renderCategories();
+renderOrder();
 
 </script>
 
