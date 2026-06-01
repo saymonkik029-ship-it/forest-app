@@ -3,9 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Forest Restaurant PRO</title>
 
 <style>
+
 *{
 margin:0;
 padding:0;
@@ -14,247 +16,310 @@ font-family:Arial,sans-serif;
 }
 
 body{
-background:#08130d;
+background:
+linear-gradient(90deg,#001a09,#003b12,#001a09);
 color:white;
-overflow-x:hidden;
+min-height:100vh;
+padding:20px;
 }
 
-/* Фон */
-.bg{
-position:fixed;
-inset:0;
-background:url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1974&auto=format&fit=crop') center/cover;
-filter:brightness(0.35);
-z-index:-1;
-}
+/* HEADER */
 
-/* Шапка */
-header{
+.header{
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:20px;
-background:rgba(0,0,0,0.4);
-backdrop-filter:blur(8px);
-position:sticky;
-top:0;
-z-index:100;
+margin-bottom:25px;
 }
 
 .logo{
-font-size:28px;
-font-weight:bold;
-color:#4ade80;
-}
-
-nav{
 display:flex;
-gap:15px;
+align-items:center;
+gap:12px;
 }
 
-nav button{
-padding:10px 18px;
+.logo h1{
+font-size:48px;
+}
+
+.logo p{
+font-size:18px;
+color:#8ee6c0;
+}
+
+.buttons{
+display:flex;
+gap:12px;
+}
+
+.top-btn{
 border:none;
-border-radius:12px;
-background:#14532d;
+padding:18px 28px;
+border-radius:22px;
+font-size:20px;
+font-weight:bold;
 color:white;
 cursor:pointer;
 transition:0.3s;
-font-size:16px;
 }
 
-nav button:hover{
-background:#22c55e;
+.view-btn{
+background:linear-gradient(45deg,#ff7a00,#ff2d55);
+}
+
+.orders-btn{
+background:linear-gradient(45deg,#00bcd4,#2dd4bf);
+}
+
+.top-btn:hover{
 transform:scale(1.05);
 }
 
-/* Главный экран */
-.hero{
-height:90vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
-padding:20px;
+/* CATEGORY */
+
+.categories{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
+margin-top:20px;
 }
 
-.hero h1{
-font-size:55px;
-margin-bottom:20px;
-animation:fade 1s ease;
-}
-
-.hero p{
-font-size:20px;
-max-width:700px;
-margin-bottom:30px;
-line-height:1.6;
-animation:fade 1.5s ease;
-}
-
-.main-btn{
-padding:16px 35px;
-border:none;
-border-radius:16px;
-background:#22c55e;
-color:white;
-font-size:20px;
+.category{
+background:rgba(0,0,0,0.55);
+border-radius:30px;
+padding:40px 25px;
+font-size:30px;
+font-weight:bold;
 cursor:pointer;
 transition:0.3s;
 }
 
-.main-btn:hover{
-transform:scale(1.08);
-background:#16a34a;
+.category:hover{
+background:#0f2f1f;
+transform:translateY(-5px);
 }
 
-/* Карточки */
-.cards{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
-padding:50px 20px;
+/* ORDER */
+
+.order-box{
+margin-top:35px;
+background:rgba(0,0,0,0.6);
+padding:30px;
+border-radius:35px;
 }
 
-.card{
-background:rgba(255,255,255,0.08);
-padding:25px;
-border-radius:20px;
-backdrop-filter:blur(10px);
-transition:0.4s;
+.order-box h2{
+font-size:55px;
+margin-bottom:20px;
 }
 
-.card:hover{
-transform:translateY(-10px);
-background:rgba(255,255,255,0.15);
+.order-list{
+margin-bottom:20px;
+font-size:22px;
+line-height:1.8;
 }
 
-.card h2{
-margin-bottom:15px;
-color:#4ade80;
+.total{
+display:flex;
+justify-content:space-between;
+font-size:28px;
+font-weight:bold;
+margin-top:10px;
+margin-bottom:25px;
 }
 
-.card p{
-line-height:1.5;
+.accept-btn{
+width:100%;
+padding:28px;
+border:none;
+border-radius:30px;
+font-size:34px;
+font-weight:bold;
+background:#22d3b6;
+color:white;
+cursor:pointer;
+transition:0.3s;
 }
 
-/* Footer */
-footer{
-text-align:center;
-padding:25px;
-background:rgba(0,0,0,0.4);
-margin-top:40px;
+.accept-btn:hover{
+transform:scale(1.03);
+background:#1bc9aa;
 }
 
-/* Анимация */
-@keyframes fade{
-from{
-opacity:0;
-transform:translateY(30px);
-}
-to{
-opacity:1;
-transform:translateY(0);
-}
-}
+/* MOBILE */
 
-/* Телефон */
 @media(max-width:700px){
 
-.hero h1{
-font-size:38px;
+.logo h1{
+font-size:28px;
 }
 
-.hero p{
-font-size:17px;
+.category{
+font-size:22px;
+padding:30px 20px;
 }
 
-nav{
-flex-wrap:wrap;
-justify-content:center;
+.order-box h2{
+font-size:36px;
+}
+
+.accept-btn{
+font-size:24px;
+padding:22px;
+}
+
+.top-btn{
+padding:14px 20px;
+font-size:18px;
 }
 
 }
+
 </style>
 </head>
 
 <body>
 
-<div class="bg"></div>
+<!-- HEADER -->
 
-<header>
-<div class="logo">FOREST</div>
+<div class="header">
 
-<nav>
-<button onclick="scrollToSection('home')">Главная</button>
-<button onclick="scrollToSection('menu')">Меню</button>
-<button onclick="scrollToSection('about')">О нас</button>
-<button onclick="showMessage()">Контакты</button>
-</nav>
-</header>
+<div class="logo">
+<div style="font-size:50px">🌲</div>
 
-<section class="hero" id="home">
-<h1>Forest Restaurant PRO</h1>
+<div>
+<h1>Forest</h1>
+<p>Restaurant PRO</p>
+</div>
+</div>
 
-<p>
-Лучший ресторан с атмосферой леса,
-неоновым дизайном и современной кухней.
-</p>
+<div class="buttons">
 
-<button class="main-btn" onclick="showMessage()">
-Забронировать стол
+<button class="top-btn view-btn"
+onclick="changeView()">
++ Вид
 </button>
-</section>
 
-<section class="cards" id="menu">
+<button class="top-btn orders-btn"
+onclick="showOrders()">
+Заказы
+</button>
 
-<div class="card">
-<h2>🍕 Пицца</h2>
-<p>Горячая итальянская пицца из печи.</p>
 </div>
 
-<div class="card">
-<h2>🍔 Бургеры</h2>
-<p>Сочные бургеры с фирменным соусом.</p>
 </div>
 
-<div class="card">
-<h2>🥗 Салаты</h2>
-<p>Свежие овощи и натуральные продукты.</p>
+<!-- CATEGORIES -->
+
+<div class="categories">
+
+<div class="category"
+onclick="addDish('Борщ',450)">
+Первое
 </div>
 
-<div class="card">
-<h2>🍰 Десерты</h2>
-<p>Сладости и напитки премиум уровня.</p>
+<div class="category"
+onclick="addDish('Стейк',1200)">
+Второе
 </div>
 
-</section>
+<div class="category"
+onclick="addDish('Торт',350)">
+Десерты
+</div>
 
-<section class="hero" id="about">
-<h1>О нас</h1>
+<div class="category"
+onclick="addDish('Лимонад',250)">
+Напитки
+</div>
 
-<p>
-Forest Restaurant — современный ресторан
-с красивым дизайном, быстрым сервисом
-и уникальной атмосферой.
-</p>
-</section>
+<div class="category"
+onclick="addDish('Вино',1800)">
+Алкоголь
+</div>
 
-<footer>
-© 2025 Forest Restaurant PRO
-</footer>
+</div>
+
+<!-- ORDER -->
+
+<div class="order-box">
+
+<h2>Текущий заказ</h2>
+
+<div class="order-list" id="orderList">
+Ничего не выбрано
+</div>
+
+<div class="total">
+<span>Итого</span>
+<span id="total">0 ₽</span>
+</div>
+
+<button class="accept-btn"
+onclick="acceptOrder()">
+Принять заказ
+</button>
+
+</div>
 
 <script>
-function showMessage(){
-alert("Спасибо за интерес к Forest Restaurant!");
+
+let total = 0;
+let orders = [];
+
+function addDish(name,price){
+
+orders.push(name + " — " + price + " ₽");
+
+total += price;
+
+document.getElementById("orderList").innerHTML =
+orders.join("<br>");
+
+document.getElementById("total").innerText =
+total + " ₽";
+
 }
 
-function scrollToSection(id){
-document.getElementById(id).scrollIntoView({
-behavior:"smooth"
-});
+function acceptOrder(){
+
+if(total === 0){
+alert("Добавьте блюда");
+return;
 }
+
+alert("Заказ принят!");
+
+orders = [];
+total = 0;
+
+document.getElementById("orderList").innerHTML =
+"Ничего не выбрано";
+
+document.getElementById("total").innerText =
+"0 ₽";
+
+}
+
+function showOrders(){
+
+if(orders.length === 0){
+alert("Заказов пока нет");
+}else{
+alert("Текущих блюд: " + orders.length);
+}
+
+}
+
+function changeView(){
+
+document.body.style.background =
+"linear-gradient(90deg,#021b0d,#065f46,#021b0d)";
+
+alert("Вид изменён");
+
+}
+
 </script>
 
 </body>
