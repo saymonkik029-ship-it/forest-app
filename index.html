@@ -2,33 +2,46 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Forest Restaurant PRO</title>
 
 <style>
-body{
+*{
 margin:0;
+padding:0;
+box-sizing:border-box;
 font-family:Arial;
-background:linear-gradient(180deg,#111,#063);
-color:white;
 }
 
-header{
+body{
+background:
+linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.7)),
+linear-gradient(135deg,#013b12,#045b1c,#01280c);
+color:white;
+min-height:100vh;
+padding:20px;
+}
+
+.header{
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:20px;
+margin-bottom:25px;
 }
 
 .logo{
 display:flex;
 align-items:center;
-gap:10px;
+gap:12px;
 }
 
 .logo h1{
-margin:0;
-font-size:42px;
+font-size:52px;
+}
+
+.logo p{
+color:#7dffb2;
+font-size:22px;
 }
 
 .top-buttons{
@@ -39,101 +52,126 @@ align-items:center;
 
 .btn{
 border:none;
-padding:14px 22px;
-border-radius:20px;
-font-weight:bold;
 cursor:pointer;
+font-weight:bold;
+}
+
+.btn-main{
+padding:14px 24px;
+border-radius:18px;
+font-size:18px;
 color:white;
 }
 
 .orange{
-background:linear-gradient(45deg,#ff7b00,#ff4d6d);
+background:linear-gradient(45deg,#ff6a00,#ff4d6d);
 }
 
 .blue{
-background:linear-gradient(45deg,#00b4ff,#29d3b2);
+background:linear-gradient(45deg,#00b4ff,#32d7b8);
 }
 
-.settings-btn{
-width:45px;
-height:45px;
+.settings{
+width:42px;
+height:42px;
 border-radius:50%;
-border:none;
 background:#111827;
 color:white;
-font-size:22px;
-cursor:pointer;
+font-size:20px;
 }
 
 .categories{
 display:grid;
-grid-template-columns:1fr 1fr;
-gap:20px;
-padding:20px;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:18px;
+margin-bottom:30px;
 }
 
 .category{
-background:rgba(0,0,0,0.5);
-padding:35px;
-border-radius:30px;
-font-size:26px;
+background:rgba(0,0,0,.45);
+border-radius:24px;
+padding:30px;
+font-size:22px;
 font-weight:bold;
 cursor:pointer;
+transition:.2s;
 position:relative;
 }
 
-.category-tools{
+.category:hover{
+transform:scale(1.03);
+}
+
+.cat-actions{
 position:absolute;
 top:10px;
 right:10px;
 display:flex;
-gap:6px;
+gap:5px;
 }
 
 .small-btn{
+width:28px;
+height:28px;
 border:none;
-width:30px;
-height:30px;
-border-radius:10px;
-font-size:16px;
+border-radius:8px;
 cursor:pointer;
+font-size:14px;
+font-weight:bold;
 color:white;
 }
 
 .edit{
-background:#00c2ff;
+background:#00b4ff;
 }
 
 .delete{
-background:#ff3b6b;
+background:#ff4d6d;
 }
 
 .order-box{
-margin:20px;
-background:rgba(0,0,0,0.55);
+background:rgba(0,0,0,.45);
 padding:25px;
-border-radius:30px;
+border-radius:28px;
+}
+
+.order-box h2{
+font-size:44px;
+margin-bottom:20px;
+}
+
+.table-input{
+width:100%;
+padding:14px;
+border-radius:14px;
+border:none;
+margin-bottom:20px;
+font-size:18px;
 }
 
 .order-item{
 display:flex;
 justify-content:space-between;
-margin:8px 0;
+align-items:center;
+background:rgba(255,255,255,.08);
+padding:12px;
+border-radius:14px;
+margin-bottom:10px;
 }
 
 .remove-item{
-background:red;
+background:#ff4d6d;
 border:none;
 color:white;
+padding:6px 10px;
 border-radius:8px;
-padding:4px 10px;
 cursor:pointer;
 }
 
 .total{
 display:flex;
 justify-content:space-between;
-font-size:36px;
+font-size:40px;
 font-weight:bold;
 margin-top:20px;
 }
@@ -143,98 +181,132 @@ width:100%;
 margin-top:20px;
 padding:18px;
 border:none;
-border-radius:20px;
-background:#40f5ff;
-font-size:26px;
+border-radius:22px;
+background:linear-gradient(45deg,#00ffc3,#5ce1ff);
+font-size:28px;
 font-weight:bold;
+color:white;
 cursor:pointer;
-}
-
-input{
-width:100%;
-padding:14px;
-border-radius:14px;
-border:none;
-margin-top:10px;
 }
 
 .modal{
 position:fixed;
 inset:0;
-background:rgba(0,0,0,0.8);
+background:rgba(0,0,0,.7);
 display:none;
 justify-content:center;
 align-items:center;
 padding:20px;
+z-index:999;
 }
 
 .modal-content{
-background:#1a1a1a;
-padding:20px;
-border-radius:25px;
 width:100%;
-max-width:500px;
+max-width:600px;
 max-height:90vh;
 overflow:auto;
+background:#07150d;
+padding:20px;
+border-radius:24px;
 }
 
-.dish{
-background:rgba(255,255,255,0.05);
-padding:15px;
+.modal h2{
+margin-bottom:20px;
+font-size:34px;
+}
+
+.food-card{
+background:rgba(255,255,255,.06);
+padding:14px;
 border-radius:18px;
-margin-top:15px;
+margin-bottom:12px;
 }
 
-.dish-buttons{
+.food-top{
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.food-buttons{
 display:flex;
 gap:8px;
-margin-top:10px;
+margin-top:12px;
 }
 
-.green{
-background:#37ff73;
-color:black;
-}
-
-.close-btn{
-margin-top:20px;
-background:#ff4b7d;
-width:100%;
-padding:14px;
+.food-buttons button{
+flex:1;
+padding:10px;
 border:none;
-border-radius:15px;
-font-size:18px;
+border-radius:12px;
 font-weight:bold;
 cursor:pointer;
 color:white;
+}
+
+.add{
+background:#38ef7d;
+color:black !important;
+}
+
+.close{
+background:#ff4d6d;
+margin-top:15px;
+width:100%;
+padding:14px;
+border:none;
+border-radius:16px;
+font-size:18px;
+color:white;
+cursor:pointer;
+}
+
+input{
+width:100%;
+padding:12px;
+border:none;
+border-radius:12px;
+margin-bottom:12px;
+font-size:16px;
+}
+
+.save{
+width:100%;
+padding:12px;
+border:none;
+border-radius:12px;
+background:#38ef7d;
+font-weight:bold;
+cursor:pointer;
+margin-bottom:10px;
 }
 </style>
 </head>
 
 <body>
 
-<header>
+<div class="header">
 <div class="logo">
-<div style="font-size:50px">🌲</div>
+<div style="font-size:55px;">🌲</div>
 <div>
 <h1>Forest</h1>
-<div>Restaurant PRO</div>
+<p>Restaurant PRO</p>
 </div>
 </div>
 
 <div class="top-buttons">
-<button class="btn orange" onclick="addCategory()">+ Вид</button>
-<button class="btn blue" onclick="openOrders()">Заказы</button>
-<button class="settings-btn" onclick="openSettings()">⚙</button>
+<button class="btn btn-main orange" onclick="addCategory()">+ Вид</button>
+<button class="btn btn-main blue" onclick="openOrders()">Заказы</button>
+<button class="btn settings" onclick="openSettings()">⚙</button>
 </div>
-</header>
+</div>
 
 <div class="categories" id="categories"></div>
 
 <div class="order-box">
-<h1>Текущий заказ</h1>
+<h2>Текущий заказ</h2>
 
-<input id="tableNumber" placeholder="Номер столика">
+<input class="table-input" id="tableNumber" placeholder="Номер столика">
 
 <div id="currentOrder"></div>
 
@@ -248,47 +320,26 @@ color:white;
 </button>
 </div>
 
+<!-- МОДАЛКА -->
 <div class="modal" id="modal">
-<div class="modal-content">
-<h1 id="modalTitle"></h1>
-
-<button class="btn green" onclick="createDish()">
-+ Добавить блюдо
-</button>
-
-<div id="dishList"></div>
-
-<button class="close-btn" onclick="closeModal()">
-Закрыть
-</button>
-</div>
+<div class="modal-content" id="modalContent"></div>
 </div>
 
 <script>
+let categories = JSON.parse(localStorage.getItem("categories")) || {
+"Первое":[],
+"Второе":[],
+"Десерты":[],
+"Напитки":[],
+"Алкоголь":[]
+};
 
-let categories =
-JSON.parse(localStorage.getItem("categories")) || [
-{name:"Первое", dishes:[]},
-{name:"Второе", dishes:[]},
-{name:"Десерты", dishes:[]},
-{name:"Напитки", dishes:[]},
-{name:"Алкоголь", dishes:[]}
-];
-
-let currentCategory = null;
-
-let currentOrder =
-JSON.parse(localStorage.getItem("currentOrder")) || [];
-
-let orders =
-JSON.parse(localStorage.getItem("orders")) || [];
-
-let history =
-JSON.parse(localStorage.getItem("history")) || [];
+let currentOrder = [];
+let orders = JSON.parse(localStorage.getItem("orders")) || [];
+let history = JSON.parse(localStorage.getItem("history")) || [];
 
 function save(){
 localStorage.setItem("categories",JSON.stringify(categories));
-localStorage.setItem("currentOrder",JSON.stringify(currentOrder));
 localStorage.setItem("orders",JSON.stringify(orders));
 localStorage.setItem("history",JSON.stringify(history));
 }
@@ -297,25 +348,81 @@ function renderCategories(){
 const box=document.getElementById("categories");
 box.innerHTML="";
 
-categories.forEach((cat,index)=>{
+Object.keys(categories).forEach(cat=>{
 
 box.innerHTML+=`
-<div class="category" onclick="openCategory(${index})">
+<div class="category" onclick="openCategory('${cat}')">
+${cat}
 
-${cat.name}
+<div class="cat-actions" onclick="event.stopPropagation()">
+<button class="small-btn edit" onclick="renameCategory('${cat}')">✎</button>
+<button class="small-btn delete" onclick="deleteCategory('${cat}')">✕</button>
+</div>
 
-<div class="category-tools">
+</div>
+`;
+
+});
+}
+
+function addCategory(){
+const name=prompt("Название вида");
+if(!name)return;
+categories[name]=[];
+save();
+renderCategories();
+}
+
+function renameCategory(oldName){
+const newName=prompt("Новое название",oldName);
+if(!newName)return;
+
+categories[newName]=categories[oldName];
+delete categories[oldName];
+
+save();
+renderCategories();
+}
+
+function deleteCategory(name){
+if(confirm("Удалить вид?")){
+delete categories[name];
+save();
+renderCategories();
+}
+}
+
+function openCategory(name){
+
+let html=`
+<h2>${name}</h2>
+
+<button class="save" onclick="addFood('${name}')">
++ Добавить блюдо
+</button>
+`;
+
+categories[name].forEach((food,index)=>{
+
+html+=`
+<div class="food-card">
+
+<div class="food-top">
+<div>
+<h3>${food.name}</h3>
+<p>${food.price} ₽</p>
+</div>
+
+<div style="display:flex;gap:6px;">
+<button class="small-btn add"
+onclick="orderFood('${name}',${index})">+</button>
 
 <button class="small-btn edit"
-onclick="event.stopPropagation();editCategory(${index})">
-✏
-</button>
+onclick="editFood('${name}',${index})">✎</button>
 
 <button class="small-btn delete"
-onclick="event.stopPropagation();deleteCategory(${index})">
-🗑
-</button>
-
+onclick="deleteFood('${name}',${index})">✕</button>
+</div>
 </div>
 
 </div>
@@ -323,62 +430,15 @@ onclick="event.stopPropagation();deleteCategory(${index})">
 
 });
 
-}
+html+=`
+<button class="close" onclick="closeModal()">Закрыть</button>
+`;
 
-function openCategory(index){
-currentCategory=index;
-
+document.getElementById("modalContent").innerHTML=html;
 document.getElementById("modal").style.display="flex";
-document.getElementById("modalTitle").innerText=
-categories[index].name;
-
-renderDishes();
 }
 
-function closeModal(){
-document.getElementById("modal").style.display="none";
-}
-
-function renderDishes(){
-
-const list=document.getElementById("dishList");
-list.innerHTML="";
-
-categories[currentCategory].dishes.forEach((dish,i)=>{
-
-list.innerHTML+=`
-<div class="dish">
-
-<h2>${dish.name}</h2>
-<div>${dish.price} ₽</div>
-
-<div class="dish-buttons">
-
-<button class="small-btn green"
-onclick="addDish(${i})">
-+
-</button>
-
-<button class="small-btn edit"
-onclick="editDish(${i})">
-✏
-</button>
-
-<button class="small-btn delete"
-onclick="deleteDish(${i})">
-🗑
-</button>
-
-</div>
-
-</div>
-`;
-
-});
-
-}
-
-function createDish(){
+function addFood(cat){
 
 const name=prompt("Название блюда");
 if(!name)return;
@@ -386,46 +446,44 @@ if(!name)return;
 const price=prompt("Цена");
 if(!price)return;
 
-categories[currentCategory].dishes.push({
+categories[cat].push({
 name,
 price:Number(price)
 });
 
 save();
-renderDishes();
+openCategory(cat);
 }
 
-function editDish(i){
+function editFood(cat,index){
 
-const dish=categories[currentCategory].dishes[i];
+let food=categories[cat][index];
 
-dish.name=prompt("Название",dish.name);
-dish.price=prompt("Цена",dish.price);
+const newName=prompt("Название",food.name);
+if(!newName)return;
+
+const newPrice=prompt("Цена",food.price);
+if(!newPrice)return;
+
+food.name=newName;
+food.price=Number(newPrice);
 
 save();
-renderDishes();
+openCategory(cat);
 }
 
-function deleteDish(i){
-
-if(confirm("Удалить блюдо?")){
-
-categories[currentCategory].dishes.splice(i,1);
-
+function deleteFood(cat,index){
+categories[cat].splice(index,1);
 save();
-renderDishes();
-
+openCategory(cat);
 }
 
-}
+function orderFood(cat,index){
 
-function addDish(i){
+const food=categories[cat][index];
 
-const dish=categories[currentCategory].dishes[i];
+currentOrder.push(food);
 
-currentOrder.push(dish);
-
-save();
 renderOrder();
 }
 
@@ -433,26 +491,31 @@ function renderOrder(){
 
 const box=document.getElementById("currentOrder");
 
+if(currentOrder.length===0){
+box.innerHTML="<p>Нет блюд</p>";
+document.getElementById("totalPrice").innerText="0 ₽";
+return;
+}
+
 box.innerHTML="";
 
 let total=0;
 
-currentOrder.forEach((dish,i)=>{
+currentOrder.forEach((item,index)=>{
 
-total+=Number(dish.price);
+total+=item.price;
 
 box.innerHTML+=`
 <div class="order-item">
-
 <div>
-${dish.name} — ${dish.price} ₽
+<b>${item.name}</b><br>
+${item.price} ₽
 </div>
 
 <button class="remove-item"
-onclick="removeOrderItem(${i})">
-X
+onclick="removeOrderItem(${index})">
+✕
 </button>
-
 </div>
 `;
 
@@ -460,132 +523,141 @@ X
 
 document.getElementById("totalPrice").innerText=
 total+" ₽";
-
 }
 
-function removeOrderItem(i){
-
-currentOrder.splice(i,1);
-
-save();
+function removeOrderItem(index){
+currentOrder.splice(index,1);
 renderOrder();
 }
 
 function confirmOrder(){
 
-if(currentOrder.length===0)return;
+if(currentOrder.length===0){
+alert("Нет блюд");
+return;
+}
+
+const table=document.getElementById("tableNumber").value || "Не указан";
 
 const order={
-table:
-document.getElementById("tableNumber").value || "-",
-
+table,
 items:[...currentOrder],
-
 total:currentOrder.reduce((a,b)=>a+b.price,0),
-
-date:new Date().toLocaleString()
+time:new Date().toLocaleString()
 };
 
 orders.push(order);
 history.push(order);
 
-currentOrder=[];
-
-document.getElementById("tableNumber").value="";
-
 save();
+
+currentOrder=[];
 renderOrder();
 
-alert("Заказ подтвержден");
-
+alert("Заказ принят");
 }
 
 function openOrders(){
 
-let text="";
+let html=`<h2>Заказы</h2>`;
 
-orders.forEach((o,i)=>{
+if(orders.length===0){
+html+=`<p>Нет заказов</p>`;
+}
 
-text+=`
-#${i+1}
-Стол: ${o.table}
-Сумма: ${o.total} ₽
-Дата: ${o.date}
+orders.forEach((o,index)=>{
 
+html+=`
+<div class="food-card">
+
+<h3>Столик: ${o.table}</h3>
+<p>${o.time}</p>
+
+<p>
+${o.items.map(i=>i.name).join(", ")}
+</p>
+
+<b>${o.total} ₽</b>
+
+<div class="food-buttons">
+<button class="add"
+onclick="deleteOrder(${index})">
+Удалить
+</button>
+</div>
+
+</div>
 `;
 
 });
 
-alert(text || "Нет заказов");
+html+=`
+<button class="close" onclick="closeModal()">
+Закрыть
+</button>
+`;
 
+document.getElementById("modalContent").innerHTML=html;
+document.getElementById("modal").style.display="flex";
+}
+
+function deleteOrder(index){
+orders.splice(index,1);
+save();
+openOrders();
 }
 
 function openSettings(){
 
-let text="";
+let html=`<h2>История заказов</h2>`;
 
-history.forEach((o,i)=>{
+history.forEach((o,index)=>{
 
-text+=`
-#${i+1}
-Стол: ${o.table}
-Сумма: ${o.total} ₽
-Дата: ${o.date}
+html+=`
+<div class="food-card">
 
+<h3>Столик ${o.table}</h3>
+
+<p>${o.time}</p>
+
+<p>${o.items.map(i=>i.name).join(", ")}</p>
+
+<b>${o.total} ₽</b>
+
+<div class="food-buttons">
+<button class="delete"
+onclick="deleteHistory(${index})">
+Удалить
+</button>
+</div>
+
+</div>
 `;
 
 });
 
-alert(text || "История пуста");
+html+=`
+<button class="close" onclick="closeModal()">
+Закрыть
+</button>
+`;
 
+document.getElementById("modalContent").innerHTML=html;
+document.getElementById("modal").style.display="flex";
 }
 
-function addCategory(){
-
-const name=prompt("Название категории");
-
-if(!name)return;
-
-categories.push({
-name,
-dishes:[]
-});
-
+function deleteHistory(index){
+history.splice(index,1);
 save();
-renderCategories();
+openSettings();
 }
 
-function editCategory(i){
-
-const name=prompt(
-"Новое название",
-categories[i].name
-);
-
-if(!name)return;
-
-categories[i].name=name;
-
-save();
-renderCategories();
-}
-
-function deleteCategory(i){
-
-if(confirm("Удалить категорию?")){
-
-categories.splice(i,1);
-
-save();
-renderCategories();
-
-}
-
+function closeModal(){
+document.getElementById("modal").style.display="none";
 }
 
 renderCategories();
 renderOrder();
-
 </script>
 
 </body>
