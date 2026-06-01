@@ -4,128 +4,264 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Forest Restaurant PRO</title>
+<script src="https://cdn.tailwindcss.com"></script>
 
 <style>
 body{
-    margin:0;
-    font-family:Arial;
-    background:linear-gradient(180deg,#001a0f,#00331f);
-    color:white;
+margin:0;
+font-family:Arial,sans-serif;
+background:#08130d;
+color:white;
+overflow:hidden;
 }
-
-.header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:20px;
+.bg{
+position:fixed;
+inset:0;
+background:url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1600') center/cover;
+opacity:.14;
+z-index:-2;
 }
-
-.logo{
-    font-size:40px;
-    font-weight:bold;
+.overlay{
+position:fixed;
+inset:0;
+background:linear-gradient(135deg,#08130d,#10281b,#173626);
+z-index:-1;
 }
-
-.top-buttons{
-    display:flex;
-    gap:10px;
+.glass{
+background:rgba(10,22,16,.78);
+backdrop-filter:blur(16px);
 }
-
-.btn{
-    padding:15px 25px;
-    border:none;
-    border-radius:20px;
-    color:white;
-    font-size:22px;
-    font-weight:bold;
+button{
+transition:.2s;
 }
-
-.orange{
-    background:linear-gradient(90deg,#ff7b00,#ff3d7f);
-}
-
-.blue{
-    background:linear-gradient(90deg,#00b7ff,#00ffd0);
-}
-
-.grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:20px;
-    padding:20px;
-}
-
-.card{
-    background:#00160f;
-    border-radius:25px;
-    padding:35px 20px;
-    font-size:32px;
-    font-weight:bold;
-}
-
-.order{
-    margin:20px;
-    background:#00160f;
-    border-radius:30px;
-    padding:25px;
-}
-
-.order h1{
-    font-size:50px;
-}
-
-.total{
-    display:flex;
-    justify-content:space-between;
-    font-size:40px;
-    margin-top:20px;
-}
-
-.accept{
-    margin-top:30px;
-    width:100%;
-    padding:25px;
-    border:none;
-    border-radius:30px;
-    background:#22e0c0;
-    color:white;
-    font-size:40px;
-    font-weight:bold;
+button:active{
+transform:scale(.96);
 }
 </style>
 </head>
 
 <body>
 
-<div class="header">
-    <div>
-        <div class="logo">🌲 Forest</div>
-        <div style="font-size:25px;">Restaurant PRO</div>
-    </div>
+<div class="bg"></div>
+<div class="overlay"></div>
 
-    <div class="top-buttons">
-        <button class="btn orange">+ Вид</button>
-        <button class="btn blue">Заказы</button>
-    </div>
+<div class="h-screen flex flex-col">
+
+<div class="glass p-4 flex items-center justify-between border-b border-emerald-700">
+
+<div>
+<div class="text-3xl font-black">🌲 Forest</div>
+<div class="text-emerald-300 text-sm">Restaurant PRO</div>
 </div>
 
-<div class="grid">
-    <div class="card">Первое</div>
-    <div class="card">Второе</div>
-    <div class="card">Десерты</div>
-    <div class="card">Напитки</div>
-    <div class="card">Алкоголь</div>
+<div class="flex gap-2">
+
+<button onclick="openCategoryModal()"
+class="bg-gradient-to-r from-orange-500 to-red-500 px-4 py-3 rounded-2xl font-black">
++ Вид
+</button>
+
+<button onclick="openOrders()"
+class="bg-gradient-to-r from-cyan-500 to-teal-500 px-5 py-3 rounded-2xl font-black">
+Заказы
+</button>
+
 </div>
 
-<div class="order">
-    <h1>Текущий заказ</h1>
-
-    <div class="total">
-        <span>Итого</span>
-        <span>0 ₽</span>
-    </div>
-
-    <button class="accept">Принять заказ</button>
 </div>
+
+<div class="flex-1 overflow-auto p-3">
+
+<div id="categories"
+class="grid grid-cols-2 gap-3 mb-4"></div>
+
+<div id="menuSection" class="hidden">
+
+<div class="flex justify-between items-center mb-4">
+
+<div id="categoryTitle"
+class="text-3xl font-black"></div>
+
+<button onclick="openAddModal()"
+class="bg-gradient-to-r from-emerald-500 to-green-600 px-4 py-3 rounded-2xl font-black">
++ Добавить
+</button>
+
+</div>
+
+<div id="dishes" class="space-y-3"></div>
+
+</div>
+
+<div class="glass rounded-[30px] p-4 mt-5">
+
+<div class="text-3xl font-black mb-4">
+Текущий заказ
+</div>
+
+<div id="orderList" class="space-y-3 mb-4"></div>
+
+<div class="flex justify-between text-2xl font-black mb-4">
+<span>Итого</span>
+<span id="total">0 ₽</span>
+</div>
+
+<button onclick="acceptOrder()"
+class="w-full py-4 rounded-3xl text-2xl font-black bg-gradient-to-r from-emerald-500 to-teal-500">
+Принять заказ
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+let categories = ['Первое','Второе','Десерты','Напитки','Алкоголь'];
+
+let menu = {};
+let currentCategory='';
+let currentOrder=[];
+
+categories.forEach(c=>menu[c]=[]);
+
+function renderCategories(){
+
+const container=document.getElementById('categories');
+
+container.innerHTML='';
+
+categories.forEach(category=>{
+
+container.innerHTML += `
+<button onclick="selectCategory('${category}')"
+class="glass rounded-3xl p-5 text-left">
+
+<div class="text-2xl font-black">${category}</div>
+
+</button>
+`;
+
+});
+
+}
+
+function selectCategory(category){
+
+currentCategory=category;
+
+document.getElementById('menuSection').classList.remove('hidden');
+
+document.getElementById('categoryTitle').innerText=category;
+
+renderDishes();
+
+}
+
+function renderDishes(){
+
+const container=document.getElementById('dishes');
+
+container.innerHTML='';
+
+if(menu[currentCategory].length===0){
+
+container.innerHTML=`
+<div class="glass rounded-3xl p-6 text-center opacity-70">
+Нет блюд
+</div>
+`;
+
+return;
+
+}
+
+menu[currentCategory].forEach((dish,index)=>{
+
+container.innerHTML += `
+<div class="glass rounded-[30px] p-4">
+
+<div class="flex justify-between items-center">
+
+<div>
+
+<div class="text-2xl font-black">${dish.name}</div>
+
+<div class="text-emerald-400 text-xl">
+${dish.price} ₽
+</div>
+
+</div>
+
+<button onclick="addToOrder(${index})"
+class="bg-gradient-to-r from-emerald-500 to-green-600 px-5 py-3 rounded-2xl font-black">
++
+</button>
+
+</div>
+
+</div>
+`;
+
+});
+
+}
+
+function addToOrder(index){
+
+currentOrder.push(menu[currentCategory][index]);
+
+renderOrder();
+
+}
+
+function renderOrder(){
+
+const container=document.getElementById('orderList');
+
+container.innerHTML='';
+
+let total=0;
+
+currentOrder.forEach((dish)=>{
+
+total += dish.price;
+
+container.innerHTML += `
+<div class="glass rounded-2xl p-3 flex justify-between items-center">
+
+<div>
+<div class="font-black">${dish.name}</div>
+<div class="text-emerald-400">${dish.price} ₽</div>
+</div>
+
+</div>
+`;
+
+});
+
+document.getElementById('total').innerText=total + ' ₽';
+
+}
+
+function acceptOrder(){
+
+if(currentOrder.length===0){
+alert('Заказ пуст');
+return;
+}
+
+alert('Заказ принят 🌲');
+
+currentOrder=[];
+
+renderOrder();
+
+}
+
+renderCategories();
+
+</script>
 
 </body>
 </html>
