@@ -6,26 +6,24 @@
 <title>Forest Restaurant PRO</title>
 
 <style>
-
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial,sans-serif;
+font-family:Arial;
 }
 
 body{
-background:linear-gradient(180deg,#021b12,#05361d);
+background:linear-gradient(90deg,#001b08,#0d4f1f,#001b08);
 color:white;
-min-height:100vh;
 padding:20px;
 }
 
-.header{
+header{
 display:flex;
 justify-content:space-between;
 align-items:center;
-margin-bottom:20px;
+margin-bottom:25px;
 }
 
 .logo{
@@ -35,299 +33,268 @@ gap:15px;
 }
 
 .logo h1{
-font-size:42px;
+font-size:52px;
 }
 
 .logo p{
-color:#8fffd2;
+color:#8fffd1;
+font-size:24px;
 }
 
 .top-buttons{
 display:flex;
-gap:10px;
+gap:15px;
 align-items:center;
 }
 
-.btn{
+.top-btn{
 border:none;
-border-radius:18px;
-padding:15px 20px;
+padding:18px 30px;
+border-radius:25px;
+font-size:22px;
 font-weight:bold;
-font-size:18px;
 cursor:pointer;
+color:white;
 }
 
 .orange{
-background:linear-gradient(45deg,#ff7b00,#ff3d77);
-color:white;
+background:linear-gradient(45deg,#ff7b00,#ff3c7b);
 }
 
 .blue{
-background:linear-gradient(45deg,#00d2ff,#3a7dff);
-color:white;
+background:linear-gradient(45deg,#00cfff,#27e2c2);
 }
 
 .settings{
-width:55px;
-height:55px;
+width:65px;
+height:65px;
 border-radius:50%;
-background:#081321;
-color:white;
-font-size:26px;
-display:flex;
-justify-content:center;
-align-items:center;
+border:none;
+font-size:30px;
 cursor:pointer;
+background:#111;
+color:white;
 }
 
 .categories{
 display:grid;
 grid-template-columns:1fr 1fr;
-gap:15px;
-margin-bottom:25px;
+gap:20px;
+margin-bottom:30px;
 }
 
 .category{
-background:rgba(0,0,0,0.35);
-border-radius:25px;
-padding:30px 20px;
-font-size:26px;
+background:rgba(0,0,0,0.45);
+border-radius:35px;
+padding:40px 25px;
+font-size:42px;
 font-weight:bold;
 cursor:pointer;
 transition:0.2s;
-position:relative;
 }
 
 .category:hover{
 transform:scale(1.03);
 }
 
-.category-actions{
-position:absolute;
-top:10px;
-right:10px;
-display:flex;
-gap:5px;
-}
-
-.small-btn{
-border:none;
-padding:5px 8px;
-border-radius:10px;
-cursor:pointer;
-font-size:12px;
-}
-
-.edit{
-background:#00d5ff;
-color:white;
-}
-
-.delete{
-background:#ff4d7a;
-color:white;
-}
-
 .order-box{
 background:rgba(0,0,0,0.45);
-border-radius:30px;
+border-radius:35px;
 padding:25px;
 }
 
 .order-box h2{
-font-size:48px;
+font-size:55px;
 margin-bottom:20px;
 }
 
 .table-input{
 width:100%;
-padding:15px;
+padding:18px;
 border:none;
 border-radius:15px;
-margin-bottom:15px;
-font-size:18px;
+font-size:22px;
+margin-bottom:20px;
 }
 
 .order-item{
+background:rgba(255,255,255,0.08);
+padding:15px;
+border-radius:15px;
+margin-bottom:10px;
 display:flex;
 justify-content:space-between;
 align-items:center;
-background:rgba(255,255,255,0.05);
-padding:12px;
-border-radius:12px;
-margin-bottom:10px;
+font-size:20px;
 }
 
 .remove-btn{
-background:#ff4d7a;
+background:#ff4d73;
 border:none;
 color:white;
-padding:6px 10px;
+padding:8px 14px;
 border-radius:10px;
 cursor:pointer;
 }
 
 .total{
+font-size:38px;
+font-weight:bold;
+margin-top:20px;
 display:flex;
 justify-content:space-between;
-font-size:36px;
-font-weight:bold;
-margin:20px 0;
 }
 
 .confirm{
+margin-top:20px;
 width:100%;
 padding:22px;
 border:none;
-border-radius:22px;
-font-size:32px;
+border-radius:25px;
+font-size:34px;
 font-weight:bold;
-background:linear-gradient(45deg,#00ffc8,#49e2ff);
+background:linear-gradient(45deg,#22e7b6,#2fe1ff);
 color:white;
 cursor:pointer;
 }
 
 .modal{
 position:fixed;
-inset:0;
+top:0;
+left:0;
+width:100%;
+height:100%;
 background:rgba(0,0,0,0.7);
 display:none;
 justify-content:center;
 align-items:center;
 padding:20px;
-z-index:1000;
+z-index:999;
 }
 
 .modal-content{
-background:#062416;
+background:#071d10;
 width:100%;
-max-width:500px;
-border-radius:25px;
-padding:20px;
+max-width:850px;
 max-height:90vh;
 overflow:auto;
+border-radius:30px;
+padding:25px;
 }
 
 .modal h2{
+font-size:45px;
 margin-bottom:20px;
-font-size:34px;
 }
 
-input{
+.add-dish{
 width:100%;
-padding:14px;
+padding:18px;
 border:none;
-border-radius:14px;
-margin-bottom:12px;
-font-size:18px;
-}
-
-.save-btn{
-width:100%;
-padding:14px;
-border:none;
-border-radius:14px;
-background:#43ff68;
-font-size:20px;
-font-weight:bold;
-margin-bottom:10px;
-cursor:pointer;
-}
-
-.close-btn{
-width:100%;
-padding:14px;
-border:none;
-border-radius:14px;
-background:#ff4d7a;
-font-size:20px;
-font-weight:bold;
-color:white;
-cursor:pointer;
-}
-
-.food-item{
-background:rgba(255,255,255,0.05);
-padding:14px;
 border-radius:18px;
-margin-bottom:10px;
+background:#4cff6f;
+font-size:28px;
+font-weight:bold;
+margin-bottom:20px;
+cursor:pointer;
 }
 
-.food-top{
+.dish-card{
+background:rgba(255,255,255,0.05);
+padding:15px;
+border-radius:20px;
+margin-bottom:15px;
 display:flex;
 justify-content:space-between;
 align-items:center;
-margin-bottom:10px;
 }
 
-.food-title{
-font-size:22px;
-font-weight:bold;
+.dish-info h3{
+font-size:28px;
 }
 
-.food-price{
-color:#aaffdc;
+.dish-info p{
+font-size:20px;
+margin-top:5px;
+color:#ccc;
 }
 
-.food-buttons{
+.actions{
 display:flex;
-gap:8px;
+gap:10px;
 }
 
-.food-buttons button{
-flex:1;
-padding:10px;
+.mini{
+width:48px;
+height:48px;
 border:none;
 border-radius:12px;
+font-size:24px;
+font-weight:bold;
+cursor:pointer;
+color:white;
+}
+
+.green{
+background:#39ff7a;
+}
+
+.cyan{
+background:#4bdfff;
+}
+
+.red{
+background:#ff4d73;
+}
+
+.close{
+width:100%;
+padding:18px;
+margin-top:15px;
+border:none;
+border-radius:18px;
+background:#ff4d73;
+color:white;
+font-size:24px;
 font-weight:bold;
 cursor:pointer;
 }
 
-.add-food{
-background:#4dff88;
-}
-
-.edit-food{
-background:#4ddcff;
-}
-
-.delete-food{
-background:#ff4d7a;
-color:white;
-}
-
-.history-card{
+.order-history{
 background:rgba(255,255,255,0.05);
 padding:15px;
-border-radius:18px;
+border-radius:20px;
 margin-bottom:15px;
 }
 
-.history-card h3{
+.order-history h3{
 margin-bottom:10px;
 }
 
+input{
+outline:none;
+}
 </style>
 </head>
+
 <body>
 
-<div class="header">
+<header>
 
 <div class="logo">
-<div style="font-size:60px">🌲</div>
 <div>
-<h1>Forest</h1>
+<h1>🌲 Forest</h1>
 <p>Restaurant PRO</p>
 </div>
 </div>
 
 <div class="top-buttons">
-<button class="btn orange" onclick="openCategoryCreator()">+ Вид</button>
-<button class="btn blue" onclick="openOrders()">Заказы</button>
-<div class="settings" onclick="openSettings()">⚙</div>
+<button class="top-btn orange" onclick="addCategory()">+ Вид</button>
+<button class="top-btn blue" onclick="openOrders()">Заказы</button>
+<button class="settings" onclick="openSettings()">⚙</button>
 </div>
 
-</div>
+</header>
 
 <div class="categories" id="categories"></div>
 
@@ -335,267 +302,237 @@ margin-bottom:10px;
 
 <h2>Текущий заказ</h2>
 
-<input class="table-input" id="tableNumber" placeholder="Номер столика">
+<input type="number" placeholder="Номер столика" id="tableNumber" class="table-input">
 
-<div id="orderList"></div>
+<div id="orderItems"></div>
 
 <div class="total">
 <span>Итого</span>
-<span id="total">0 ₽</span>
+<span id="totalPrice">0 ₽</span>
 </div>
 
-<button class="confirm" onclick="confirmOrder()">Подтвердить заказ</button>
+<button class="confirm" onclick="confirmOrder()">
+Подтвердить заказ
+</button>
 
 </div>
 
-<!-- CATEGORY MODAL -->
-
-<div class="modal" id="foodsModal">
-
+<!-- МЕНЮ -->
+<div class="modal" id="menuModal">
 <div class="modal-content">
 
-<h2 id="foodsTitle"></h2>
+<h2 id="menuTitle"></h2>
 
-<button class="save-btn" onclick="showAddFood()">Добавить блюдо</button>
+<button class="add-dish" onclick="createDish()">
++ Добавить блюдо
+</button>
 
-<div id="foodsList"></div>
+<div id="dishList"></div>
 
-<button class="close-btn" onclick="closeModal('foodsModal')">Закрыть</button>
-
-</div>
-</div>
-
-<!-- ADD FOOD -->
-
-<div class="modal" id="addFoodModal">
-
-<div class="modal-content">
-
-<h2>Добавить блюдо</h2>
-
-<input id="foodName" placeholder="Название блюда">
-<input id="foodPrice" type="number" placeholder="Цена">
-
-<button class="save-btn" onclick="saveFood()">Сохранить</button>
-
-<button class="close-btn" onclick="closeModal('addFoodModal')">Закрыть</button>
+<button class="close" onclick="closeModal('menuModal')">
+Закрыть
+</button>
 
 </div>
 </div>
 
-<!-- CATEGORY CREATE -->
-
-<div class="modal" id="categoryModal">
-
-<div class="modal-content">
-
-<h2>Новый вид блюда</h2>
-
-<input id="categoryName" placeholder="Название вида">
-
-<button class="save-btn" onclick="saveCategory()">Создать</button>
-
-<button class="close-btn" onclick="closeModal('categoryModal')">Закрыть</button>
-
-</div>
-</div>
-
-<!-- ORDERS -->
-
+<!-- ЗАКАЗЫ -->
 <div class="modal" id="ordersModal">
-
 <div class="modal-content">
 
-<h2>Активные заказы</h2>
+<h2>Все заказы</h2>
 
 <div id="ordersList"></div>
 
-<button class="close-btn" onclick="closeModal('ordersModal')">Закрыть</button>
+<button class="close" onclick="closeModal('ordersModal')">
+Закрыть
+</button>
 
 </div>
 </div>
 
-<!-- SETTINGS -->
-
+<!-- НАСТРОЙКИ -->
 <div class="modal" id="settingsModal">
-
 <div class="modal-content">
 
 <h2>История заказов</h2>
 
 <div id="historyList"></div>
 
-<button class="close-btn" onclick="closeModal('settingsModal')">Закрыть</button>
+<button class="close" onclick="closeModal('settingsModal')">
+Закрыть
+</button>
 
 </div>
 </div>
 
 <script>
 
-let categories = JSON.parse(localStorage.getItem("categories")) || [
-{name:"Первое", foods:[]},
-{name:"Второе", foods:[]},
-{name:"Десерты", foods:[]},
-{name:"Напитки", foods:[]},
-{name:"Алкоголь", foods:[]}
-];
+let categories = JSON.parse(localStorage.getItem("categories")) || {
+"Первое":[
+{name:"Борщ",price:250}
+],
+"Второе":[
+{name:"Стейк",price:550}
+],
+"Десерты":[
+{name:"Чизкейк",price:200}
+],
+"Напитки":[
+{name:"Кола",price:120}
+],
+"Алкоголь":[
+{name:"Вино",price:700}
+]
+};
 
-let currentOrder = JSON.parse(localStorage.getItem("currentOrder")) || [];
-
+let currentCategory = "";
+let currentOrder = [];
 let orders = JSON.parse(localStorage.getItem("orders")) || [];
-
 let history = JSON.parse(localStorage.getItem("history")) || [];
 
-let currentCategory = null;
-let editFoodIndex = null;
-
-function saveData(){
+function save(){
 localStorage.setItem("categories",JSON.stringify(categories));
-localStorage.setItem("currentOrder",JSON.stringify(currentOrder));
 localStorage.setItem("orders",JSON.stringify(orders));
 localStorage.setItem("history",JSON.stringify(history));
 }
 
 function renderCategories(){
 
-const box = document.getElementById("categories");
-box.innerHTML = "";
+let box=document.getElementById("categories");
+box.innerHTML="";
 
-categories.forEach((cat,index)=>{
+for(let category in categories){
 
-box.innerHTML += `
-<div class="category" onclick="openFoods(${index})">
+box.innerHTML+=`
+<div class="category" onclick="openCategory('${category}')">
+${category}
+</div>
+`;
 
-<div class="category-actions">
+}
 
-<button class="small-btn edit" onclick="event.stopPropagation(); editCategory(${index})">✏</button>
+}
 
-<button class="small-btn delete" onclick="event.stopPropagation(); deleteCategory(${index})">🗑</button>
+function openCategory(name){
 
+currentCategory=name;
+
+document.getElementById("menuTitle").innerText=name;
+
+let list=document.getElementById("dishList");
+list.innerHTML="";
+
+categories[name].forEach((dish,index)=>{
+
+list.innerHTML+=`
+<div class="dish-card">
+
+<div class="dish-info">
+<h3>${dish.name}</h3>
+<p>${dish.price} ₽</p>
 </div>
 
-${cat.name}
+<div class="actions">
+
+<button class="mini green"
+onclick="addToOrder('${dish.name}',${dish.price})">
++
+</button>
+
+<button class="mini cyan"
+onclick="editDish(${index})">
+✎
+</button>
+
+<button class="mini red"
+onclick="deleteDish(${index})">
+×
+</button>
+
+</div>
 
 </div>
 `;
 
 });
 
+document.getElementById("menuModal").style.display="flex";
+
 }
 
-function openFoods(index){
+function closeModal(id){
+document.getElementById(id).style.display="none";
+}
 
-currentCategory = index;
+function createDish(){
 
-document.getElementById("foodsTitle").innerText = categories[index].name;
+let name=prompt("Название блюда");
+if(!name)return;
 
-const list = document.getElementById("foodsList");
+let price=prompt("Цена");
+if(!price)return;
 
-list.innerHTML = "";
-
-categories[index].foods.forEach((food,i)=>{
-
-list.innerHTML += `
-<div class="food-item">
-
-<div class="food-top">
-<div>
-<div class="food-title">${food.name}</div>
-<div class="food-price">${food.price} ₽</div>
-</div>
-</div>
-
-<div class="food-buttons">
-
-<button class="add-food" onclick="addToOrder('${food.name}',${food.price})">+</button>
-
-<button class="edit-food" onclick="editFood(${i})">✏</button>
-
-<button class="delete-food" onclick="deleteFood(${i})">🗑</button>
-
-</div>
-
-</div>
-`;
-
+categories[currentCategory].push({
+name,
+price:Number(price)
 });
 
-document.getElementById("foodsModal").style.display = "flex";
+save();
+openCategory(currentCategory);
 
 }
 
-function showAddFood(){
+function editDish(index){
 
-editFoodIndex = null;
+let dish=categories[currentCategory][index];
 
-document.getElementById("foodName").value = "";
-document.getElementById("foodPrice").value = "";
+let newName=prompt("Новое название",dish.name);
+if(!newName)return;
 
-document.getElementById("addFoodModal").style.display = "flex";
+let newPrice=prompt("Новая цена",dish.price);
+if(!newPrice)return;
 
-}
+dish.name=newName;
+dish.price=Number(newPrice);
 
-function saveFood(){
-
-const name = document.getElementById("foodName").value;
-const price = document.getElementById("foodPrice").value;
-
-if(!name || !price) return;
-
-if(editFoodIndex === null){
-
-categories[currentCategory].foods.push({
-name,
-price
-});
-
-}else{
-
-categories[currentCategory].foods[editFoodIndex] = {
-name,
-price
-};
+save();
+openCategory(currentCategory);
 
 }
 
-saveData();
+function deleteDish(index){
 
-closeModal("addFoodModal");
+if(confirm("Удалить блюдо?")){
 
-openFoods(currentCategory);
+categories[currentCategory].splice(index,1);
 
+save();
+openCategory(currentCategory);
+
+}
+
+}
+
+function addCategory(){
+
+let name=prompt("Название категории");
+
+if(!name)return;
+
+categories[name]=[];
+
+save();
 renderCategories();
-
-}
-
-function editFood(index){
-
-editFoodIndex = index;
-
-const food = categories[currentCategory].foods[index];
-
-document.getElementById("foodName").value = food.name;
-document.getElementById("foodPrice").value = food.price;
-
-document.getElementById("addFoodModal").style.display = "flex";
-
-}
-
-function deleteFood(index){
-
-categories[currentCategory].foods.splice(index,1);
-
-saveData();
-
-openFoods(currentCategory);
 
 }
 
 function addToOrder(name,price){
 
-currentOrder.push({name,price});
-
-saveData();
+currentOrder.push({
+name,
+price
+});
 
 renderOrder();
 
@@ -603,32 +540,34 @@ renderOrder();
 
 function renderOrder(){
 
-const list = document.getElementById("orderList");
+let box=document.getElementById("orderItems");
+box.innerHTML="";
 
-list.innerHTML = "";
-
-let total = 0;
+let total=0;
 
 currentOrder.forEach((item,index)=>{
 
-total += Number(item.price);
+total+=item.price;
 
-list.innerHTML += `
+box.innerHTML+=`
 <div class="order-item">
 
 <div>
-${item.name}<br>
-${item.price} ₽
+${item.name} — ${item.price} ₽
 </div>
 
-<button class="remove-btn" onclick="removeOrderItem(${index})">X</button>
+<button class="remove-btn"
+onclick="removeOrderItem(${index})">
+Удалить
+</button>
 
 </div>
 `;
 
 });
 
-document.getElementById("total").innerText = total + " ₽";
+document.getElementById("totalPrice").innerText=
+total+" ₽";
 
 }
 
@@ -636,33 +575,38 @@ function removeOrderItem(index){
 
 currentOrder.splice(index,1);
 
-saveData();
-
 renderOrder();
 
 }
 
 function confirmOrder(){
 
-if(currentOrder.length === 0) return;
+if(currentOrder.length===0){
+alert("Нет блюд");
+return;
+}
 
-const order = {
-table: document.getElementById("tableNumber").value || "Без номера",
+let table=document.getElementById("tableNumber").value;
+
+let total=currentOrder.reduce((a,b)=>a+b.price,0);
+
+let order={
+id:Date.now(),
+table:table,
 items:[...currentOrder],
-total: currentOrder.reduce((a,b)=>a+Number(b.price),0),
+total:total,
 date:new Date().toLocaleString()
 };
 
 orders.push(order);
 history.push(order);
 
-currentOrder = [];
+save();
 
-document.getElementById("tableNumber").value = "";
-
-saveData();
-
+currentOrder=[];
 renderOrder();
+
+document.getElementById("tableNumber").value="";
 
 alert("Заказ принят");
 
@@ -670,37 +614,44 @@ alert("Заказ принят");
 
 function openOrders(){
 
-const list = document.getElementById("ordersList");
-
-list.innerHTML = "";
+let list=document.getElementById("ordersList");
+list.innerHTML="";
 
 orders.forEach((order,index)=>{
 
-list.innerHTML += `
-<div class="history-card">
+list.innerHTML+=`
+<div class="order-history">
 
 <h3>Столик: ${order.table}</h3>
 
-<div>${order.date}</div>
+<p>${order.date}</p>
 
-<br>
+<p>
+${order.items.map(i=>i.name).join(", ")}
+</p>
 
-${order.items.map(i=>`${i.name} - ${i.price} ₽`).join("<br>")}
+<h3>${order.total} ₽</h3>
 
-<br><br>
+<div style="margin-top:10px;display:flex;gap:10px;">
 
-<b>Итого: ${order.total} ₽</b>
+<button class="mini cyan"
+onclick="editOrder(${index})">
+✎
+</button>
 
-<br><br>
+<button class="mini red"
+onclick="deleteOrder(${index})">
+×
+</button>
 
-<button class="save-btn" onclick="deleteOrder(${index})">Удалить</button>
+</div>
 
 </div>
 `;
 
 });
 
-document.getElementById("ordersModal").style.display = "flex";
+document.getElementById("ordersModal").style.display="flex";
 
 }
 
@@ -708,45 +659,48 @@ function deleteOrder(index){
 
 orders.splice(index,1);
 
-saveData();
-
+save();
 openOrders();
+
+}
+
+function editOrder(index){
+
+alert("Редактирование можно добавить позже");
 
 }
 
 function openSettings(){
 
-const list = document.getElementById("historyList");
-
-list.innerHTML = "";
+let list=document.getElementById("historyList");
+list.innerHTML="";
 
 history.forEach((order,index)=>{
 
-list.innerHTML += `
-<div class="history-card">
+list.innerHTML+=`
+<div class="order-history">
 
-<h3>Столик ${order.table}</h3>
+<h3>Столик: ${order.table}</h3>
 
-<div>${order.date}</div>
+<p>${order.date}</p>
 
-<br>
+<p>
+${order.items.map(i=>i.name).join(", ")}
+</p>
 
-${order.items.map(i=>`${i.name} - ${i.price} ₽`).join("<br>")}
+<h3>${order.total} ₽</h3>
 
-<br><br>
-
-<b>Итого: ${order.total} ₽</b>
-
-<br><br>
-
-<button class="close-btn" onclick="deleteHistory(${index})">Удалить навсегда</button>
+<button class="mini red"
+onclick="deleteHistory(${index})">
+×
+</button>
 
 </div>
 `;
 
 });
 
-document.getElementById("settingsModal").style.display = "flex";
+document.getElementById("settingsModal").style.display="flex";
 
 }
 
@@ -754,78 +708,12 @@ function deleteHistory(index){
 
 history.splice(index,1);
 
-saveData();
-
+save();
 openSettings();
 
 }
 
-function openCategoryCreator(){
-
-document.getElementById("categoryModal").style.display = "flex";
-
-}
-
-function saveCategory(){
-
-const name = document.getElementById("categoryName").value;
-
-if(!name) return;
-
-categories.push({
-name,
-foods:[]
-});
-
-saveData();
-
 renderCategories();
-
-closeModal("categoryModal");
-
-document.getElementById("categoryName").value = "";
-
-}
-
-function deleteCategory(index){
-
-if(confirm("Удалить категорию?")){
-
-categories.splice(index,1);
-
-saveData();
-
-renderCategories();
-
-}
-
-}
-
-function editCategory(index){
-
-const newName = prompt("Новое название",categories[index].name);
-
-if(newName){
-
-categories[index].name = newName;
-
-saveData();
-
-renderCategories();
-
-}
-
-}
-
-function closeModal(id){
-
-document.getElementById(id).style.display = "none";
-
-}
-
-renderCategories();
-
-renderOrder();
 
 </script>
 
